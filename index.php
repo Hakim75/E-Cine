@@ -35,7 +35,8 @@ if(isset($_GET['p'])){
 }
 
 switch($displayedPage){
-	case 'connexion':
+		case 'sign-up':
+			case 'sign-in':
 		$headerfootersuffix = '_other';
 		break;	
 	default :

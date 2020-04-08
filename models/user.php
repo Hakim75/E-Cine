@@ -1,5 +1,5 @@
 <?php
-class User extends Object {
+class User extends Objects {
 
 	private $sTable;
 

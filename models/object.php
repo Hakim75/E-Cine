@@ -1,5 +1,5 @@
 <?php
-class Object {
+class Objects {
 	private $id;
 	private $table;
 	private $fields;

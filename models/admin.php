@@ -1,5 +1,5 @@
 <?php
-class Admin extends Object {
+class Admin extends Objects {
 
 	private $sTable;
 
