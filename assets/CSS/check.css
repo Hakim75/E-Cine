@@ -1,0 +1,12 @@
+#Layer_1 {
+    width: 20px;
+}
+
+.hide {
+    display: none;
+}
+
+#icon-oval,
+#icon-check {
+    visibility: hidden;
+}
