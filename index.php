@@ -35,13 +35,16 @@ if(isset($_GET['p'])){
 }
 
 switch($displayedPage){
-		case 'sign-up':
-			case 'sign-in':
+	case 'sign-up':
+	case 'sign-in':
 		$headerfootersuffix = '_other';
-		break;	
-	default :
+	break;	
+	case 'home';
 		$headerfootersuffix = '_home';
-		break;
+	break;
+	default :
+		$headerfootersuffix = '_app';
+	break;
 }
 
 

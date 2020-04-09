@@ -45,8 +45,8 @@ class User extends Objects {
 		global $db;
 		global $cmn;
 		
-		$nouveau = ($dataForm['nouveau']);
-		$ancien = ($dataForm['ancien']);
+		$nouveau = ($dataForm['npass']);
+		$ancien = ($dataForm['apass']);
 
 		$encNouveau = $cmn->cryptPass($nouveau);
 		$encAncien = $cmn->cryptPass($ancien);
@@ -81,7 +81,7 @@ class User extends Objects {
 		if($prenom==""){
 			$prenom=null;
 		}
-		$tabParamsVerifEmail = array('usr_sEmail' => $email,
+		 $tabParamsVerifEmail = array('usr_sEmail' => $email,
 			'usr_id' => $_SESSION['usr']);
 			
 		$tabParamsVerifPseudo = array('usr_sPseudo' => $pseudo,

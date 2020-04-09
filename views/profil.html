@@ -1,0 +1,54 @@
+<h2>Mon Profil</h2>
+
+
+
+<form id="form_profil">
+
+    <div class="returne_profil">
+
+
+    </div>
+    <div>
+        <label> Votre nom *</label> <br>
+        <input type="text" name="nom" class="require nom" value="<?=$customer->usr_sNom;?>">
+    </div>
+    <div>
+        <label> Votre prénom </label> <br>
+        <input type="text" name="prenom" value="<?=$customer->usr_sPrenom;?>">
+    </div>
+    <div>
+        <label> Votre e-mail *</label> <br>
+        <input type="text" name="email" class="require email" value="<?=$customer->usr_sEmail;?>">
+    </div>
+    <div>
+        <label> Votre pseudo *</label> <br>
+        <input type="text" name="pseudo" class="require pseudo" value="<?=$customer->usr_sPseudo;?>">
+    </div>
+    <div>
+        <button type="button" id="profil"> Modifier</button>
+    </div>
+
+</form> <br> <br>
+
+<form id="form_pass">
+
+    <div class="returne_pass">
+    </div>
+
+    <div>
+        <label> Ancien mot de passe</label> <br>
+        <input type="password" name="apass" class="require apass">
+    </div>
+    <div>
+        <label> Nouveau mot de passe</label> <br>
+        <input type="password" name="npass" class="require npass">
+    </div>
+    <div>
+        <label> Confirmation </label> <br>
+        <input type="password" name="cpass" class="require cpass">
+    </div>
+    <div>
+        <button type="button" id="pass"> Modifier</button>
+    </div>
+
+</form>
