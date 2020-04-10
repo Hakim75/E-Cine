@@ -8,6 +8,11 @@ body {
     background:black;
 }
 
+div.checkbox {
+    display: inline-block;
+    margin-left: 10px;
+}
+
 #page-wrapper {
     padding: 15px 15px;
     min-height: 600px;

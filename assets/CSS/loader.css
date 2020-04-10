@@ -47,6 +47,10 @@
   display: none;
 }
 
+.ui-draggable, .ui-droppable {
+	background-position: top;
+}
+
 @keyframes moveleft {
 	to { transform: scale(1)  translateX(0); }
   55% { transform: scale(1.5); }

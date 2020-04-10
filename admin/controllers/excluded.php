@@ -19,6 +19,15 @@
         header("location:../?p=admins");
     }
 
+    if(isset($_GET["idPta"])){
+        $param = array(
+            "pta_iSta"=>2,
+            "pta_id"=>$_GET["idPta"]
+        );
+        $db->sqlSimpleQuery("UPDATE ".TABLE_PTA." SET pta_iSta = ? WHERE pta_id = ?",$param);
+        header("location:../?p=rate");
+    }
+
     if(isset($_GET["idCat"])){
         $param = array(
             "cat_id"=>$_GET["idCat"]

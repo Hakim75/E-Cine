@@ -13,6 +13,7 @@ require_once('./../models/query.php');
 require_once('./../models/user.php');
 require_once('./../models/admin.php');
 require_once('./../models/tool.php');
+require_once('./../models/media.php');
 
 
 $db  = new Query();
@@ -20,6 +21,7 @@ $cmn = new Common();
 $usr = new User();
 $adm = new Admin();
 $too = new Tool();
+$med = new Media();
 
 
 $page = htmlentities($_GET['p']);

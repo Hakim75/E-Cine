@@ -2,10 +2,12 @@
 class Tool extends Objects {
 
 	private $sTableCat;
+	private $sTablePta;
 
 	public function __construct()
 	{
 		$this->sTableCat = TABLE_CAT;
+		$this->sTablePta = TABLE_PTA;
 	}
 
 	public function addCategories($dataForm)
@@ -15,7 +17,7 @@ class Tool extends Objects {
 		
 		$lib = (trim(strtolower($cmn->forUrl($dataForm['lib']))));
 
-		$param = array('cat_sLib '=> $lib);
+		$param = array('cat_sLib'=> $lib);
 			
         $insert = $db->sqlSimpleQuery('INSERT INTO '.$this->sTableCat.'(cat_sLib) VALUES(?)', $param);
         return true;
@@ -61,5 +63,73 @@ class Tool extends Objects {
 		}
 	}
 	
+
+	public function addRate($dataForm)
+	{
+		global $db;
+		global $cmn;
+
+		$lib = (trim($dataForm['lib']));
+		$prix = ($dataForm['prix']);
+		$duree = ($dataForm['duree']);
+		$avantage = (trim(htmlspecialchars($dataForm['avantage'])));
+
+		$param = array(
+			'pta_iSta'=> 1,
+			'pta_sLibelle'=> $lib,
+			'pta_iPrix'=> $prix,
+			'pta_iDuree'=> $duree,
+			'pta_sAvantage'=> $avantage
+		);
+			
+		$insert = $db->sqlSimpleQuery('INSERT INTO '.$this->sTablePta.'(pta_iSta,pta_sLibelle,pta_iPrix,pta_iDuree,pta_sAvantage) 
+										VALUES(?,?,?,?,?)', $param);
+        return true;
+	}
+
+
+	public function isRateAvailable($lib)
+	{
+		global $db;
+        global $cmn;
+        
+		$param = array('pta_sLibelle'=>trim($lib));
+		$verif = $db->sqlSingleResult('SELECT COUNT(pta_id) AS nb FROM '.$this->sTablePta.' WHERE pta_sLibelle = ?', $param);
+		return $verif->nb;
+	}
+
+	public function editRate($dataForm)
+	{
+		global $db;
+		global $cmn;
+		
+        $lib = (trim($dataForm['lib']));
+		$prix = ($dataForm['prix']);
+		$duree = ($dataForm['duree']);
+		$avantage = (trim(htmlspecialchars($dataForm['avantage'])));
+        
+		$tabParamsVerif = array(
+            'pta_sLibelle' => $lib,
+            'pta_id' => $dataForm['id']
+        );
+					
+		$verif=$db->sqlSingleResult("SELECT COUNT(pta_id) AS nb FROM ".$this->sTablePta." WHERE pta_sLibelle=? AND pta_id!=?",$tabParamsVerif);
+		if($verif->nb!=0){
+			return false;
+		}
+		else{
+            $tabParams = array(
+				'pta_sLibelle'=> $lib,
+				'pta_iPrix'=> $prix,
+				'pta_iDuree'=> $duree,
+				'pta_sAvantage'=> $avantage,
+                'pta_id' => $dataForm['id']
+            );
+            
+            $results = $db->sqlSimpleQuery('UPDATE '.$this->sTablePta.' SET pta_sLibelle=?, pta_iPrix=?,pta_iDuree=?,pta_sAvantage=?  WHERE pta_id = ?',$tabParams);
+            return true;
+		}
+	}
+
 }
 ?>

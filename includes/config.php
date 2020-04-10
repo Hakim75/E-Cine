@@ -30,6 +30,7 @@ const TABLE_JAB		= 'tj_abonnement_jab';
 const TABLE_JAV		= 'tj_avis_jav';
 const TABLE_JPR		= 'tj_preferences_jpr';
 const TABLE_JVV		= 'tj_vue_video_jvv';
+const TABLE_VIC     = 'tj_videos_categorie_vic';
 
 
 

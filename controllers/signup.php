@@ -1,11 +1,11 @@
 <?php  
 include("init.php");
 
-$dataFrom = $_REQUEST;
-if (!$cmn->verifMail($dataFrom["email"])) {
+$dataForm = $_REQUEST;
+if (!$cmn->verifMail($dataForm["email"])) {
     echo "Le format de votre mail est incorrecte";
 }else {
-    $create = $usr->createUser($dataFrom);
+    $create = $usr->createUser($dataForm);
     if ($create == "email") {
         echo "mail déja utilisé";
         

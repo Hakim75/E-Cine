@@ -29,7 +29,7 @@ $(document).ready(function () {
                         $(".require").parent("div").addClass("has-error");
                     }
                     else {
-                        returne.removeClass("alert alert-danger").html(back);
+                        returne.removeClass("alert alert-danger").html("");
                         $(".container-loader").addClass("flex");
                         $(".form-control").parent("div").removeClass("has-error");
                         setTimeout(() => location.href = "?p=dashboard", 3000);

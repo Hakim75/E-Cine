@@ -67,12 +67,12 @@ class Common {
 	
 	//redirectionner & renommer une image
 	
-	public function uploadFile($file,$destination){
+	public function uploadFile($file,$destination,$supp){
 		// $destination = dirname(__DIR__).$destination_dir;
 		 $extre = explode('.',$file['name']);
-		$verif = array('png','jpg','jpeg','gif','ico','jfif','PNG','JPG','JPEG','GIF','ICO','JFIF');
+		$verif = array('png','jpg','jpeg','PNG','JPG','JPEG');
 		 if(in_array(end($extre),$verif)){
-			$fichier = round(microtime(true)).'.'.end($extre);
+			$fichier = $supp.round(microtime(true)).'.'.end($extre);
 			move_uploaded_file($file['tmp_name'], $destination . $fichier);
 			return $fichier;
 		 }
@@ -82,12 +82,12 @@ class Common {
 		
 	}	
 	
-	public function uploadVideo($file,$destination){
+	public function uploadVideo($file,$destination,$supp){
 		// $destination = dirname(__DIR__).$destination_dir;
 		 $extre = explode('.',$file['name']);
-		$verif = array('mp4','avi','mpg','mov','mpa','wma','MP4','AVI','MPG','MOV','MPA','WMA');
+		$verif = array('mp4','webm','ogg','MP4','WEBM','OGG');
 		 if(in_array(end($extre),$verif)){
-			$fichier = round(microtime(true)).'.'.end($extre);
+			$fichier = $supp.round(microtime(true)).'.'.end($extre);
 			move_uploaded_file($file['tmp_name'], $destination . $fichier);
 			return $fichier;
 		 }
@@ -96,6 +96,18 @@ class Common {
 		 }
 		
 	}
+
+	public function sizeImage($file,$t){
+		// $destination = dirname(__DIR__).$destination_dir;
+		$taille = $file['size'];
+		$autorise = 1024*$t;
+		if($taille<=$autorise){
+			return true;
+		}
+		else{
+			return false;
+		}
+	}	
 
 	public function forUrl($string) {
 		$string = str_replace('é','e',$string);
@@ -227,8 +239,7 @@ class Common {
 
 	public function dateFR2EN($dateFr) {
 		$tabDate = explode('/',$dateFr);
-
-		return $tabDate[2].'-'.$tabDate[1].'-'.$tabDate[0];
+		return  $tabDate[2].'-'.$tabDate[1].'-'.$tabDate[0];
 	}
 
 	public function dateEN2FR($dateEN) {

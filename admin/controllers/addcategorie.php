@@ -1,13 +1,13 @@
 <?php  
 include("init.php");
 
-$dataFrom = $_REQUEST;
+$dataForm = $_REQUEST;
 
-$verif = $too->isCategorieAvailable($dataFrom["lib"]);
+$verif = $too->isCategorieAvailable($dataForm["lib"]);
 if ($verif !=0) {
     echo "Cette catégorie est déjà enregistrée";
 } else {
-    $create = $too->addCategories($dataFrom);
+    $create = $too->addCategories($dataForm);
     echo "ok";
 }
 

@@ -1,15 +1,15 @@
 <?php  
 include("init.php");
 
-$dataFrom = $_REQUEST;
-if (!$cmn->verifMail($dataFrom["email"])) {
+$dataForm = $_REQUEST;
+if (!$cmn->verifMail($dataForm["email"])) {
     echo "Le format du mail est incorrecte";
 }else {
-    $verif = $adm->isMailAvailableAdmin($dataFrom["email"]);
+    $verif = $adm->isMailAvailableAdmin($dataForm["email"]);
     if ($verif !=0) {
         echo "mail déja utilisé";
     } else {
-        $create = $adm->addAdmin($dataFrom);
+        $create = $adm->addAdmin($dataForm);
         echo "Votre compte a été crée , BRAVO !!!!!!!!!!!";
     }
 

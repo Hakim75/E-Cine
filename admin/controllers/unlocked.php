@@ -18,6 +18,15 @@
         $db->sqlSimpleQuery("UPDATE ".TABLE_ADM." SET adm_iSta = ? WHERE adm_id = ?",$param);
         header("location:../?p=admins");
     }
+
+    if(isset($_GET["idPta"])){
+        $param = array(
+            "pta_iSta"=>1,
+            "pta_id"=>$_GET["idPta"]
+        );
+        $db->sqlSimpleQuery("UPDATE ".TABLE_PTA." SET pta_iSta = ? WHERE pta_id = ?",$param);
+        header("location:../?p=rate");
+    }
     
     if(isset($_GET["pass"])){
         $param = array(

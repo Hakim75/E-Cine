@@ -59,3 +59,48 @@
         </div>
     </div>
 </div>
+
+<div class="modal fade" id="modalEditRate<?=$r->pta_id; ?>" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
+    <div class="modal-dialog">
+        <div class="modal-content">
+            <div class="modal-header">
+                <button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>
+                <h4 class="modal-title" id="myModalLabel">Modifier le plan tarifaire</h4>
+            </div>
+            <div class="modal-body">
+                <form id="form_edit_rate<?=$r->pta_id; ?>">
+                    <div class="form-group retour<?=$r->pta_id; ?>"></div>
+                    <div class="row">
+                        <div class="form-group col-md-12">
+                            <label>Libellé</label>
+                            <input type="text" class="form-control require<?=$r->pta_id; ?> lib" name="lib" value="<?=$r->pta_sLibelle; ?>" />
+                            <input type="hidden" name="id" value="<?=$r->pta_id; ?>" />
+                        </div>
+                        <div class="form-group col-xs-12 col-sm-12 col-md-6">
+                            <label>Prix (€)</label>
+                            <input type="number" class="form-control require<?=$r->pta_id; ?> prix<?=$r->pta_id; ?>" name="prix"  value="<?=$r->pta_iPrix; ?>" />
+                        </div>
+                        <div class="form-group col-xs-12 col-sm-12 col-md-6">
+                            <label>Durée</label>
+                            <select name="duree" class="form-control require<?=$r->pta_id; ?>">
+                                <optgroup label="choisisez la durée en mois">
+                                    <?php for($i=1; $i<=12; $i++){ ?>
+                                        <option value="<?=$i;?>" <?php if($r->pta_iDuree == $i){echo "selected='selected'";} ?>><?=$i;?> mois</option>
+                                    <?php } ?>
+                                </optgroup>
+                            </select>
+                        </div>
+                        <div class="form-group col-md-12">
+                            <label>Avantages</label>
+                            <textarea name="avantage" rows="5"  class="form-control require<?=$r->pta_id; ?>"><?=$r->pta_sAvantage; ?></textarea>
+                        </div>
+                    </div>
+                </form>
+            </div>
+            <div class="modal-footer">
+                <button type="button" class="btn btn-default" data-dismiss="modal">Fermer</button>
+                <button type="button" class="btn btn-warning edit_rate" rel="<?=$r->pta_id; ?>">Enregistrer</button>
+            </div>
+        </div>
+    </div>
+</div>
