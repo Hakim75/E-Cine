@@ -71,7 +71,7 @@ $(document).ready(function () {
 
 
         var returne = $(".returne");
-        $("#form_sign-up .require").each(function () {
+        $("#form_sign-in .require").each(function () {
             if ($.trim($(this).val()) == "") {
                 $(this).parent("div").addClass("error");
                 nbe++;
@@ -107,9 +107,8 @@ $(document).ready(function () {
 
                         returne.removeClass("fail").html(back).addClass("success");
                         $(".container-loader").addClass("flex");
-                        login.parent("div").addClass("error");
-                        pass.parent("div").addClass("error");
-
+                        login.parent("div").removeClass("error");
+                        pass.parent("div").removeClass("error");
 
                         setTimeout(() => location.href = "?p=dashboard", 3000);
                     }

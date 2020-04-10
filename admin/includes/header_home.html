@@ -1,0 +1,90 @@
+<?php 
+    if (!isset($_SESSION["adm"])) {
+        header("location:?p=login");
+    }
+    $adm = $adm->infoAdmin($_SESSION["adm"]);
+?>
+<!DOCTYPE html>
+<html>
+<head>
+      <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>E-Cine | 
+        <?php if($_GET['p']=="dashboard"){echo "Tableau de bord";} ?>
+        <?php if($_GET['p']=="customers"){echo "Notre clientèle";} ?>
+        <?php if($_GET['p']=="admins"){echo "Gestion Administrateurs";} ?>
+        <?php if($_GET['p']=="categories"){echo "Gestion des catégories";} ?>
+    </title>
+	<!-- BOOTSTRAP STYLES-->
+    <link href="assets/css/bootstrap.css" rel="stylesheet" />
+     <!-- FONTAWESOME STYLES-->
+    <link href="assets/css/font-awesome.css" rel="stylesheet" />
+     <!-- MORRIS CHART STYLES-->
+    <link href="assets/js/morris/morris-0.4.3.min.css" rel="stylesheet" />
+        <!-- CUSTOM STYLES-->
+    <link href="assets/css/custom.css" rel="stylesheet" />
+    <link href="../assets/CSS/loader.css" rel="stylesheet" />
+</head>
+<body>
+    <?php include("../includes/loader.html") ?>
+    <div id="wrapper">
+        <nav class="navbar navbar-default navbar-cls-top " role="navigation" style="margin-bottom: 0">
+            <div class="navbar-header">
+                <button type="button" class="navbar-toggle" data-toggle="collapse" data-target=".sidebar-collapse">
+                    <span class="sr-only">Toggle navigation</span>
+                    <span class="icon-bar"></span>
+                    <span class="icon-bar"></span>
+                    <span class="icon-bar"></span>
+                </button>
+                <a class="navbar-brand" href="?p=dashboard"> <img src="../assets/IMG/E-CINE.png"/></a> 
+            </div>
+  <div style="color: white;padding: 15px 50px 5px 50px;float: right;font-size: 16px;"> <?=$adm->adm_sPrenom.' '.$adm->adm_sNom;?> &nbsp; <a href="controllers/logout.php" class="btn btn-danger square-btn-adjust">Déconnexion <i class="fa fa-power-off"></i></a> </div>
+        </nav>   
+           <!-- /. NAV TOP  -->
+                <nav class="navbar-default navbar-side" role="navigation">
+            <div class="sidebar-collapse">
+                <ul class="nav" id="main-menu">
+				
+                    <li>
+                        <a class="<?php if($_GET['p']=='dashboard'){echo 'active-menu';} ?>"  href="?p=dashboard"><i class="fa fa-home fa-2x"></i> Tableau de bord</a>
+                    </li>
+                     <li>
+                        <a  class="<?php if($_GET['p']=='admins'){echo 'active-menu';} ?>" href="?p=admins"><i class="fa fa-cogs fa-2x"></i> Administrateurs</a>
+                    </li>
+                    <li>
+                        <a  class="<?php if($_GET['p']=='customers' || $_GET['p']=='activity'){echo 'active-menu';} ?>" href="?p=customers"><i class="fa fa-users fa-2x"></i> Clients</a>
+                    </li>
+                    <li>
+                        <a  class="<?php if($_GET['p']=='movies' || $_GET['p']=='series' || $_GET['p']=='new-media'){echo 'active-menu';} ?>" href="#"><i class="fa fa-film fa-2x"></i> Gestion médiathèque<span class="fa arrow"></span></a>
+                        <ul class="nav nav-second-level">
+                            <li>
+                                <a href="?p=new-media" style="color:<?php if($_GET['p']=='new-media'){echo '#FF8500';} ?>">Nouveau</a>
+                            </li>
+                            <li>
+                                <a href="?p=movies" style="color:<?php if($_GET['p']=='movies'){echo '#FF8500';} ?>">Films</a>
+                            </li>
+                            <li>
+                                <a href="?p=series" style="color:<?php if($_GET['p']=='series'){echo '#FF8500';} ?>">Séries</a>
+                            </li>
+                        </ul>
+                    </li> 
+                    <li>
+                        <a  class="<?php if($_GET['p']=='subscription'){echo 'active-menu';} ?>" href="?p=subscription"><i class="fa fa-inbox fa-2x"></i> Abonnements</a>
+                    </li>
+                    <li>
+                        <a  class="<?php if($_GET['p']=='categories' || $_GET['p']=='rate'){echo 'active-menu';} ?>" href="#"><i class="fa fa-tasks fa-2x"></i> Paramètres<span class="fa arrow"></span></a>
+                        <ul class="nav nav-second-level">
+                            <li>
+                                <a href="?p=categories" style="color:<?php if($_GET['p']=='categories'){echo '#FF8500';} ?>">Catégories</a>
+                            </li>
+                            <li>
+                                <a href="?p=rate" style="color:<?php if($_GET['p']=='rate'){echo '#FF8500';} ?>">Plan tarifaire</a>
+                            </li>
+                        </ul>
+                    </li> 
+                </ul>
+               
+            </div>
+            
+        </nav>  
+        <!-- /. NAV SIDE  -->

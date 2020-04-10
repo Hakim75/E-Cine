@@ -36,6 +36,15 @@ class Admin extends Objects {
 		}
 	}
 
+	public function infoAdmin($id){
+		global $db;
+		global $cmn;
+		
+		$param = array("adm_id"=>$id);
+		$adm= $db->sqlSingleResult("SELECT * FROM ".$this->sTable." WHERE adm_id = ?",$param);
+		return $adm;
+	}
+
 	public function addAdmin($dataForm)
 	{
 		global $db;
@@ -64,11 +73,12 @@ class Admin extends Objects {
 			'adm_sPrenom '=> $prenom,
 			'adm_sPass'=> $crypt,
 			'adm_sEmail'=> $email,
+			'adm_sPseudo'=> $pseudo,
 			'adm_iRole '=> 1,
 			'adm_sPhoto'=> 'assets/img/avatar/avatar.png');
 			
-			$insert = $db->sqlSingleResult('INSERT INTO '.$this->sTable.'(adm_iSta,adm_sNom,adm_sPrenom,adm_sPass,adm_sEmail,adm_sPwdRecovery,adm_iRole,adm_sPhoto,adm_dDateAjout)
-																		VALUES(?,?,?,?,?,?,?,CURDATE())', $param);
+			$insert = $db->sqlSimpleQuery('INSERT INTO '.$this->sTable.'(adm_iSta,adm_sNom,adm_sPrenom,adm_sPass,adm_sEmail,adm_sPseudo,adm_iRole,adm_sPhoto,adm_dDateAjout)
+																		VALUES(?,?,?,?,?,?,?,?,CURDATE())', $param);
 																		
 				$sujet = 'Création d\'un nouvel administrateur E-CINE';
 				$contenu = $salutation.' '.$nom.' '.$prenom.', <br>';
@@ -125,7 +135,7 @@ class Admin extends Objects {
 							'adm_sPseudo' => $pseudo,
 							'adm_id' => $_SESSION['adm']);
 
-			$result = $db->sqlSingleResult('UPDATE '.$this->sTable.' SET adm_sNom = ?, adm_sPrenom = ?, adm_sPseudo = ? WHERE adm_id = ?',$tabParams);
+			$result = $db->sqlSimpleQuery('UPDATE '.$this->sTable.' SET adm_sNom = ?, adm_sPrenom = ?, adm_sPseudo = ? WHERE adm_id = ?',$tabParams);
 			return true;
 		}
 		else{
@@ -139,7 +149,7 @@ class Admin extends Objects {
 							'adm_sPhoto' => 'assets/img/avatar/'.$image,
 							'adm_id' => $_SESSION['adm']);
 
-			$result = $db->sqlSingleResult('UPDATE '.$this->sTable.' SET adm_sNom = ?, adm_sPrenom = ?, adm_sPseudo = ?, adm_sPhoto = ? WHERE adm_id = ?',$tabParams);
+			$result = $db->sqlSimpleQuery('UPDATE '.$this->sTable.' SET adm_sNom = ?, adm_sPrenom = ?, adm_sPseudo = ?, adm_sPhoto = ? WHERE adm_id = ?',$tabParams);
 				return true;
 			}else{
 				return false;
@@ -162,7 +172,7 @@ class Admin extends Objects {
 			$tabParams = array('adm_sPass' => $crypt,
 							'adm_id' => $adm);
 
-			$result = $db->sqlSingleResult('UPDATE '.$this->sTable.' SET adm_sPass = ? WHERE adm_id = ?',$tabParams);
+			$result = $db->sqlSimpleQuery('UPDATE '.$this->sTable.' SET adm_sPass = ? WHERE adm_id = ?',$tabParams);
 	}
 	
 	public function changePass($pass)
@@ -177,7 +187,7 @@ class Admin extends Objects {
 						$tabParams = array('adm_sPass' => $encNouveau,
 							'adm_id' => $_SESSION['adm']);
 
-			$results = $db->sqlSingleResult('UPDATE '.$this->sTable.' SET adm_sPass = ? WHERE adm_id = ?',$tabParams);
+			$results = $db->sqlSimpleQuery('UPDATE '.$this->sTable.' SET adm_sPass = ? WHERE adm_id = ?',$tabParams);
 	}
 	
 	
@@ -229,12 +239,12 @@ class Admin extends Objects {
 			$tabParams1 = array('adm_iRole' => 1,
 								'adm_id' => $principal);
 
-			$result1 = $db->sqlSingleResult('UPDATE '.$this->sTable.' SET adm_iRole = ? WHERE adm_id = ?',$tabParams1);
+			$result1 = $db->sqlSimpleQuery('UPDATE '.$this->sTable.' SET adm_iRole = ? WHERE adm_id = ?',$tabParams1);
 			
 			$tabParams = array('adm_iRole' => 0,
 								'adm_id' => $secondaire);
 
-			$result2 = $db->sqlSingleResult('UPDATE '.$this->sTable.' SET adm_iRole = ? WHERE adm_id = ?',$tabParams);
+			$result2 = $db->sqlSimpleQuery('UPDATE '.$this->sTable.' SET adm_iRole = ? WHERE adm_id = ?',$tabParams);
 			
 			$_SESSION = array();
 			session_destroy();

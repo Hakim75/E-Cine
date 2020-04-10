@@ -60,7 +60,7 @@ class User extends Objects {
 		elseif($verif->nb==1){
 			$tabParams = array('usr_sPass' => $encNouveau,
 			'usr_id' => $_SESSION['usr']);
-			$results = $db->sqlSingleResult('UPDATE '.$this->sTable.' SET usr_sPass = ? WHERE usr_id = ?',$tabParams);
+			$results = $db->sqlSimpleQuery('UPDATE '.$this->sTable.' SET usr_sPass = ? WHERE usr_id = ?',$tabParams);
 			return true;
 		}
 
@@ -104,7 +104,7 @@ class User extends Objects {
 				'usr_sPseudo' => $pseudo,
 				'usr_id' => $_SESSION['usr']);
 				
-				$results = $db->sqlSingleResult('UPDATE '.$this->sTable.' SET usr_sNom=?,usr_sPrenom=?,usr_sEmail=?,usr_sPseudo=? WHERE usr_id = ?',$tabParams);
+				$results = $db->sqlSimpleQuery('UPDATE '.$this->sTable.' SET usr_sNom=?,usr_sPrenom=?,usr_sEmail=?,usr_sPseudo=? WHERE usr_id = ?',$tabParams);
 				return "oui";
 			}
 			
@@ -146,7 +146,7 @@ class User extends Objects {
 				'usr_sPseudo' => $pseudo,
 				'usr_sPass' => $pass
 				);
-				$results = $db->sqlSingleResult('INSERT INTO '.$this->sTable.'(usr_iSta,usr_sNom,usr_sPrenom,usr_sEmail,usr_sPseudo,usr_sPass,usr_dDateIns) 
+				$results = $db->sqlSimpleQuery('INSERT INTO '.$this->sTable.'(usr_iSta,usr_sNom,usr_sPrenom,usr_sEmail,usr_sPseudo,usr_sPass,usr_dDateIns) 
 				VALUES(?,?,?,?,?,?,CURDATE())',$tabParams);
 				return "oui";
 			}

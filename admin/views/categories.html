@@ -1,0 +1,69 @@
+<div id="page-wrapper" >
+    <div id="page-inner">
+        <div class="row">
+            <div class="col-md-12">
+             <h2>Page paramètre</h2>
+             <h5>Configuration des catégories</h5>
+            </div>
+        </div>
+         <!-- /. ROW  -->
+         <hr />
+       
+    <div class="row">
+        <div class=" col-xs-12 col-sm-12 col-md-4">
+            <div class="panel panel-default">
+                <div class="panel-heading">
+                     Ajouter une catégorie
+                </div>
+                <div class="panel-body">
+                    <form id="form_categories">
+                        <div class="form-group retour"></div>
+                        <div class="form-group">
+                            <label>Libélé</label>
+                            <input type="text" class="form-control require" name="lib" />
+                        </div>
+                        <div class="form-group">
+                            <button type="button" class="form-control btn btn-warning" id="categories">Ajouter</button>
+                        </div>
+                    </form>
+                </div>
+            </div>
+        </div>
+        <div class=" col-xs-12 col-sm-12 col-md-8">
+            <!-- Advanced Tables -->
+            <div class="panel panel-default">
+                <div class="panel-heading">
+                     Liste des catégories
+                </div>
+                <div class="panel-body">
+                    <div class="table-responsive">
+                        <table class="table table-striped table-bordered table-hover" id="dataTables-example">
+                            <thead>
+                                <tr>
+                                    <th>Libellé</th>
+                                    <th class="text-center">Action</th>
+                                </tr>
+                            </thead>
+                            <tbody>
+                                <?php foreach($categories AS $c){ ?>
+                                <tr>
+                                    <td><?=$c->cat_sLib; ?></td>
+                                    <td class="text-center" style="font-size: 17px;">
+                                        <a title="supprimer" onclick="return confirm('Voulez-vous supprimer la catégorie <?=$c->cat_sLib; ?> ?');" href="controllers/excluded.php?idCat=<?=$c->cat_id; ?>" class="text-danger"><i class="fa fa-trash-o"></i></a>&nbsp;
+                                        <a title="Modifier" data-toggle="modal" data-target="#modalEditCategories<?=$c->cat_id; ?>" href="#" class="text-primary"><i class="fa fa-edit"></i></a>
+                                    </td>
+                                </tr>
+                                <?php include("includes/modal.html");} ?>
+                            </tbody>
+                        </table>
+                    </div>
+                    
+                </div>
+            </div>
+            <!--End Advanced Tables -->
+        </div>
+    </div>
+        <!-- /. ROW  -->
+</div>
+       
+</div>

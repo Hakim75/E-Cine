@@ -1,0 +1,61 @@
+<div class="modal fade" id="modalAddAdmin" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
+    <div class="modal-dialog">
+        <div class="modal-content">
+            <div class="modal-header">
+                <button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>
+                <h4 class="modal-title" id="myModalLabel">Créer un nouvel administrateur</h4>
+            </div>
+            <div class="modal-body">
+                <form id="form_sign-up">
+                    <div class="form-group retour"></div>
+                    <div class="row">
+                        <div class="form-group col-xs-12 col-sm-12 col-md-6">
+                            <label>Nom*</label>
+                            <input type="text" class="form-control require" name="nom" />
+                        </div>
+                        <div class="form-group col-xs-12 col-sm-12 col-md-6">
+                            <label>Pénom</label>
+                            <input type="text" class="form-control" name="prenom" />
+                        </div>
+                        <div class="form-group col-md-12">
+                            <label>Email*</label>
+                            <input type="text" class="form-control require" name="email" />
+                        </div>
+                    </div>
+                </form>
+            </div>
+            <div class="modal-footer">
+                <button type="button" class="btn btn-default" data-dismiss="modal">Fermer</button>
+                <button type="button" class="btn btn-warning" id="sign-up">Enregistrer</button>
+            </div>
+        </div>
+    </div>
+</div>
+
+
+<div class="modal fade" id="modalEditCategories<?=$c->cat_id; ?>" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
+    <div class="modal-dialog">
+        <div class="modal-content">
+            <div class="modal-header">
+                <button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>
+                <h4 class="modal-title" id="myModalLabel">Modifier la catégorie</h4>
+            </div>
+            <div class="modal-body">
+                <form id="form_edit_categorie<?=$c->cat_id; ?>">
+                    <div class="form-group retour<?=$c->cat_id; ?>"></div>
+                    <div class="row">
+                        <div class="form-group col-md-12">
+                            <label>Libellé*</label>
+                            <input type="text" class="form-control require<?=$c->cat_id; ?>" name="lib" value="<?=$c->cat_sLib; ?>" />
+                            <input type="hidden" name="id" value="<?=$c->cat_id; ?>" />
+                        </div>
+                    </div>
+                </form>
+            </div>
+            <div class="modal-footer">
+                <button type="button" class="btn btn-default" data-dismiss="modal">Fermer</button>
+                <button type="button" class="btn btn-warning edit_categorie" rel="<?=$c->cat_id; ?>">Enregistrer</button>
+            </div>
+        </div>
+    </div>
+</div>

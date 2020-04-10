@@ -1,0 +1,20 @@
+<?php 
+    if (isset($_SESSION["adm"])) {
+        header("location:?p=dashboard");
+    }
+?>
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Login | Admin</title>
+    <link href="assets/css/bootstrap.css" rel="stylesheet" />
+    <link href="assets/css/font-awesome.css" rel="stylesheet" />
+    <link href="assets/css/login.css" rel="stylesheet" />
+    <link rel="stylesheet" href="../assets/CSS/loader.css">
+</head>
+<body>
+    <?php include('../includes/loader.html'); ?>
+    <div id="wrapper">
+        

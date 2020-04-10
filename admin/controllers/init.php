@@ -11,10 +11,14 @@ require_once('./../../models/common.php');
 require_once('./../../models/object.php');
 require_once('./../../models/query.php');
 require_once('./../../models/user.php');
+require_once('./../../models/admin.php');
+require_once('./../../models/tool.php');
 
 $db  = new Query();
 $cmn = new Common();
 $usr = new User();
+$adm = new Admin();
+$too = new Tool();
 
 
 ?>
