@@ -51,13 +51,15 @@
                             </div>
                             <div class="form-group col-md-12">
                                 <label>Catégorie</label>
-                                <?php foreach($categories AS $c){ ?>
-                                <div class="checkbox">
-                                    <label>
-                                        <input type="checkbox" name="categorie[]" value="<?=$c->cat_id; ?>" /><?=$c->cat_sLib; ?>
-                                    </label>
+                                <div>
+                                    <?php foreach($categories AS $c){ ?>
+                                    <div class="checkbox">
+                                        <label>
+                                            <input type="checkbox" name="categorie[]" value="<?=$c->cat_id; ?>" /><?=$c->cat_sLib; ?>
+                                        </label>
+                                    </div>
+                                    <?php } ?>
                                 </div>
-                                <?php } ?>
                             </div>
                             <div class="form-group col-md-12 ">
                                 <label>Synopsis*</label>

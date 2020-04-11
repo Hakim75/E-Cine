@@ -104,3 +104,81 @@
         </div>
     </div>
 </div>
+
+<div class="modal fade" id="modalViewSerie<?=$s->vid_id;?>" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
+    <div class="modal-dialog lg">
+        <div class="modal-content">
+            <div class="modal-header">
+                <button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>
+                <h4><?=$s->vid_sTitre; ?></h4>
+            </div>
+            <div class="modal-body">
+                <div class="row">
+                    <div class="col-xs-12 col-sm-4 col-md-2">
+                        <img src="../<?=$s->vid_sPoster;?>" alt="<?=$s->vid_sTitre;?>">
+                    </div>
+                    <div class="col-xs-12 col-sm-8 col-md-5">
+                       <div style="text-decoration: underline;">Sorti le <?=$cmn->affDateFrNum($s->vid_dDateSort); ?> :</div>
+                       <div>Réalisé par <b><?=$s->vid_sReal;?></b></div>
+                       <div>
+                           <br>
+                           <?=$s->vid_sSyno;?>
+                       </div>
+                       <div><br><span style="text-decoration: underline;">Catégorie(s)</span> : <?php foreach($categoties AS $key=>$c){echo $c->cat_sLib;if($last_key!=$key){echo ',';};}?></div>
+                       <div style="color: red"><i>Ajouté le <?=$cmn->affDateTimeFrNum($s->vid_dDateAjout); ?> le par <b><a href="#" title="<?=$s->adm_sPrenom.' '.$s->adm_sNom;?>"><?=$s->adm_sPseudo;?></a></b></i></div>
+                    </div>
+                    <div class="col-xs-12 col-sm-12 col-md-5">
+                        
+                    </div>
+                </div>
+            </div>
+            <div class="modal-footer">
+                <button type="button" class="btn btn-default" data-dismiss="modal">Fermer</button>
+                <a onclick="return confirm('Voulez-vous supprimer la série <?=$s->vid_sLib; ?> ?');" href="controllers/excluded.php?idSerie=<?=$s->vid_id; ?>" class="btn btn-danger">Supprimer</a>
+                <a href="?p=edit-serie&id=<?=$s->vid_id; ?>" class="btn btn-primary">Modifier</a>
+            </div>
+        </div>
+    </div>
+</div>
+
+<div class="modal fade" id="modalViewMovie<?=$f->vid_id;?>" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
+    <div class="modal-dialog lg">
+        <div class="modal-content">
+            <div class="modal-header">
+                <button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>
+                <h4><?=$f->vid_sTitre; ?></h4>
+            </div>
+            <div class="modal-body">
+                <div class="row">
+                    <div class="col-xs-12 col-sm-4 col-md-2">
+                        <img src="../<?=$f->vid_sPoster;?>" alt="<?=$f->vid_sTitre;?>">
+                    </div>
+                    <div class="col-xs-12 col-sm-8 col-md-5">
+                       <div style="text-decoration: underline;">Sorti le <?=$cmn->affDateFrNum($f->vid_dDateSort); ?> :</div>
+                       <div>Réalisé par <b><?=$f->vid_sReal;?></b></div>
+                       <div>
+                           <br>
+                           <?=$f->vid_sSyno;?>
+                       </div>
+                       <div><br><span style="text-decoration: underline;">Catégorie(s)</span> : <?php foreach($categoties AS $key=>$c){echo $c->cat_sLib;if($last_key!=$key){echo ',';};}?></div>
+                       <div style="color: red"><i>Ajouté le <?=$cmn->affDateTimeFrNum($f->vid_dDateAjout); ?> le par <b><a href="#" title="<?=$f->adm_sPrenom.' '.$f->adm_sNom;?>"><?=$f->adm_sPseudo;?></a></b></i></div>
+                    </div>
+                    <div class="col-xs-12 col-sm-12 col-md-5">
+                        <video class="video<?=$f->vid_id; ?>" src="../<?=$f->vid_sVideo;?>" controls/>
+                    </div>
+                </div>
+            </div>
+            <div class="modal-footer">
+                <button type="button" class="btn btn-default" data-dismiss="modal">Fermer</button>
+                <a onclick="return confirm('Voulez-vous supprimer le film <?=$f->vid_sLib; ?> ?');" href="controllers/excluded.php?idFilm=<?=$f->vid_id; ?>" class="btn btn-danger">Supprimer</a>
+                <a href="?p=edit-movie&id=<?=$f->vid_id; ?>" class="btn btn-primary">Modifier</a>
+            </div>
+        </div>
+    </div>
+    <script>
+        var rel = <?php echo json_encode($f->vid_id, JSON_HEX_TAG); ?>;
+        $('#modalViewMovie'+rel).on('hidden.bs.modal', function () {
+            $(".video"+rel).get(0).pause();
+        });
+    </script>
+</div>

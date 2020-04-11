@@ -36,5 +36,21 @@
         header("location:../?p=categories");
     }
 
+    if(isset($_GET["idFilm"])){
+        $param = array(
+            "vid_id"=>$_GET["idFilm"]
+        );
+        $db->sqlSimpleQuery("DELETE FROM ".TABLE_VID." WHERE vid_id = ?",$param);
+        header("location:../?p=movies");
+    }
+
+    if(isset($_GET["idSerie"])){
+        $param = array(
+            "vid_id"=>$_GET["idSerie"]
+        );
+        $db->sqlSimpleQuery("DELETE FROM ".TABLE_VID." WHERE vid_id = ?",$param);
+        header("location:../?p=series");
+    }
+
     include("close.php");
 ?>

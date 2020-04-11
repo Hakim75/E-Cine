@@ -402,6 +402,35 @@ public	function affDateFrNum($date){
     return $str;
 }
 
+public	function affDateTimeFrNum($date){
+	
+	$tab =explode('-', $date);
+	
+    $year = $tab[0];
+    $month = $tab[1];
+	$day = $tab[2];
+	$times = explode(' ', $day);
+	$hour = $times[1];
+	$day = $times[0];
+     
+    $str = $day." ";
+    if($month == 1) $str .= "Janvier";
+    if($month == 2) $str .= "F&eacute;vrier";
+    if($month == 3) $str .= "Mars";
+    if($month == 4) $str .= "Avril";
+    if($month == 5) $str .= "Mai";
+    if($month == 6) $str .= "Juin";
+    if($month == 7) $str .= "Juillet";
+    if($month == 8) $str .= "Ao&ucirc;t";
+    if($month == 9) $str .= "Septembre";
+    if($month == 10) $str .= "Octobre";
+    if($month == 11) $str .= "Novembre";
+    if($month == 12) $str .= "D&eacute;cembre";
+    $str .= " ".$year." à ".$hour;
+     
+    return $str;
+}
+
 	public	function telCongo($tel){
 
 		$tab = explode(" ",$tel);

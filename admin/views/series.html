@@ -1,0 +1,50 @@
+<div id="page-wrapper" >
+    <div id="page-inner">
+        <div class="row">
+            <div class="col-md-12">
+             <h2>Bibliothèque des séries</h2>
+             <h5>Liste des séries enregistrées</h5>
+            </div>
+            <div class="col-md-12 text-center">
+                <h4>Catégories</h4>
+                <div id="buttons">
+
+                </div>
+            </div>
+            <div class="col-xs-12 col-sm-12 col-md-4"></div>
+            <div class="col-xs-12 col-sm-12 col-md-4">
+                <div id="search">
+                    <label for="filter-search">Recherche : </label>
+                    <input type="text" placeholder="entrez le nom du film" id="filter-search" />
+                </div>
+            </div>
+            <div class="col-xs-12 col-sm-12 col-md-4"></div>
+        </div>
+         <!-- /. ROW  -->
+         <hr />
+       
+        <div class="row">
+            <div class="col-md-12 content-serie">
+                <div id="top"></div>
+                <section class="gallery">
+                    <div class="row">
+                        <?php foreach($series AS $s){ 
+                            $categoties = $db->sqlManyResults("SELECT * FROM ".TABLE_VIC." vic 
+										INNER JOIN ".TABLE_CAT." cat ON cat.cat_id=vic.cat_id 
+                                        WHERE vic.vid_id = ?",array("vid_id"=>$s->vid_id));
+                            $last_key = end(array_keys($categoties));
+                            ?>
+                        <div class="list col-xs-12 col-sm-4 col-md-3" data-tags="<?php foreach($categoties AS $key=>$c){echo $c->cat_sLib;if($last_key!=$key){echo ',';};}?>"  rel="<?=$s->vid_sTitre;?>">
+                            <a href="#" data-toggle="modal" data-target="#modalViewSerie<?=$s->vid_id; ?>">
+                                <img src="../<?=$s->vid_sPoster;?>" alt="<?=$s->vid_sTitre;?>">
+                                <h5 class="text-center"><b><?=$s->vid_sTitre;?></b></h5>
+                            </a>
+                        </div>
+                        <?php include("includes/modal.html");} ?>
+                    </div> <!-- / row -->
+                
+                </section> <!-- / projects -->
+            </div>
+        </div>
+    </div>
+</div>
