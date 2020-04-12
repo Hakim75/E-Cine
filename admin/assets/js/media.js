@@ -79,82 +79,150 @@ $("#videos").click(function () {
 });
 
 
+$("#edit_videos").click(function () {
+    var nbe = 0;
+    var poster = $('.poster');
+    var returne = $(".retour");
+    $("#form_edit_videos .require").each(function () {
+        if ($.trim($(this).val()) == "") {
+            $(this).parent("div").addClass("has-error");
+            nbe++;
 
-(function() {
-    var $imgs = $('.gallery .list');
-    var $buttons = $('#buttons');
-    var tagged = {};
-  
-    $imgs.each(function() {
-      var img = this;
-      var tags = $(this).data('tags');
-  
-      if (tags) {
-        tags.split(',').forEach(function(tagName) {
-          if (tagged[tagName] == null) {
-            tagged[tagName] = [];
-          }
-          tagged[tagName].push(img);
+        } else {
+            $(this).parent("div").removeClass("has-error");
+
+        };
+    })
+    if (nbe == 0) {
+        var form = $('#form_edit_videos').get(0);
+		var formData = new FormData(form);
+        $.ajax({
+            type: "POST",
+            url: "controllers/editmedia.php",
+            contentType:false,
+			processData:false,
+			data:formData,
+			async:true,
+			error:function(xhr, status, error){
+				alert(xhr.responseText);
+			}
+
         })
-      }
-    })
-  
-    $('<button/>', {
-      text: 'Toutes catégories',
-      class: 'btn btn-default categories active',
-      click: function() {
-        $(this)
-          .addClass('active')
-          .siblings()
-          .removeClass('active');
-        $imgs.show();
-      }
-    }).appendTo($buttons);
-  
-    $.each(tagged, function(tagName) {
-      var $n = $(tagged[tagName]).length;
-      $('<button/>', {
-        text: tagName + '(' + $n + ')',
-        class: 'btn btn-default categories',
-        click: function() {
-          $(this)
-            .addClass('active')
-            .siblings()
-            .removeClass('active');
-          $imgs
-            .hide()
-            .filter(tagged[tagName])
-            .show();
-        }
-      }).appendTo($buttons);
-    });
-  }());
-  
-  (function() {
-    var $imgs = $('.gallery .list');
-    var $search = $('#filter-search');
-    var cache = [];
-  
-    $imgs.each(function() {
-      cache.push({
-        element: this,
-        text: this.getAttribute("rel").trim().toLowerCase()
-      })
-    })
-  
-    function filter() {
-      var query = this.value.trim().toLowerCase();
-      cache.forEach(function(img) {
-        var index = 0;
-        if (query) {
-          index = img.text.indexOf(query);
-        }
-        img.element.style.display = index === -1 ? 'none' : '';
-      })
-    }
-    if ('oninput' in $search[0]) {
-      $search.on('input', filter);
+        .done(back => {
+            if (back == "La taille de l'image ne doit pas dépasser 1M" || back == "Les formats de l'image autorisés sont .jpg, .jpeg, .png") {
+                returne.addClass("alert alert-danger").html(back);
+                poster.parent("div").addClass("has-error");
+
+            }
+            else {
+                poster.parent("div").removeClass("has-error")
+                returne.addClass("alert alert-success").removeClass("alert-danger").html("Média modifié avec succès");
+            }
+
+        });
+
     } else {
-      $search.on('keyup', filter);
+        returne.addClass("alert alert-danger").html("Veuillez renseigner tous les champs");
     }
-  }());
+});
+
+
+$("#episodes").click(function () {
+    var nbe = 0;
+    var film = $(".film");
+    var returne = $(".retour");
+    var numero = $(".numero");
+    $("#form_episodes .require").each(function () {
+        if ($.trim($(this).val()) == "") {
+            $(this).parent("div").addClass("has-error");
+            nbe++;
+
+        } else {
+            $(this).parent("div").removeClass("has-error");
+
+        };
+    })
+    if (nbe == 0) {
+        var form = $('#form_episodes').get(0);
+		var formData = new FormData(form);
+        $.ajax({
+            type: "POST",
+            url: "controllers/addepisode.php",
+            contentType:false,
+			processData:false,
+			data:formData,
+			async:true,
+			error:function(xhr, status, error){
+				alert(xhr.responseText);
+			}
+
+        })
+        .done(back => {
+            if (back == "La taille de la vidéo ne doit pas dépasser 750M" || back == "Les formats de vidéo autorisés sont .mp4, .webm, .ogg") {
+                returne.addClass("alert alert-danger").html(back);
+                film.parent("div").addClass("has-error");
+                numero.parent("div").removeClass("has-error");
+
+            }
+            else if (back == "Le numero d'un épisode commence par 1" || back == "Mettez un numéro valide") {
+                returne.addClass("alert alert-danger").html(back);
+                film.parent("div").removeClass("has-error");
+                numero.parent("div").addClass("has-error");
+
+            }
+            else {
+                numero.parent("div").removeClass("has-error");
+                film.parent("div").removeClass("has-error");
+                returne.addClass("alert alert-success").removeClass("alert-danger").html("épisode ajoutée avec succès");
+                film.parent("div").removeClass("has-error");
+                $(".container-loader").addClass("flex");
+                setTimeout(()=>location.href = "?p=new-episode&serie="+back, 2500);
+            }
+
+
+        });
+
+    } else {
+        returne.addClass("alert alert-danger").html("Veuillez renseigner tous les champs");
+    }
+});
+
+$(".edit_episode").click(function () {
+    var nbe = 0;
+    var returne = $(".retour");
+    var numero = $(".numero");
+    $("#form_edit_episode .require").each(function () {
+        if ($.trim($(this).val()) == "") {
+            $(this).parent("div").addClass("has-error");
+            nbe++;
+
+        } else {
+            $(this).parent("div").removeClass("has-error");
+
+        };
+    })
+    if (nbe == 0) {
+        var data = $('#form_edit_episode').serialize();
+        $.ajax({
+            type: "POST",
+            url: "controllers/editepisode.php",
+            data: data,
+            async: true,
+            error: (xhr, status, error) => alert(xhr.responseText)
+
+        })
+        .done(back => { 
+            if(back == "ok") {
+                numero.parent("div").removeClass("has-error");
+                returne.addClass("alert alert-success").removeClass("alert-danger").html("épisode modifié avec succès");
+            }else{
+                returne.addClass("alert alert-danger").html(back);
+                numero.parent("div").addClass("has-error");
+
+            }
+        });
+
+    } else {
+        returne.addClass("alert alert-danger").html("Veuillez renseigner tous les champs");
+    }
+});

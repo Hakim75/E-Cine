@@ -1,0 +1,74 @@
+<div id="page-wrapper" >
+    <div id="page-inner">
+        <div class="row">
+            <div class="col-md-12">
+             <h2>Page paramètre</h2>
+             <h5>Gestion de mes informations (<a href="#"><?=$admin->adm_sEmail;?></a>)</h5>
+            </div>
+        </div>
+         <!-- /. ROW  -->
+         <hr />
+       
+    <div class="row">
+        <div class=" col-xs-12 col-sm-12 col-md-6">
+            <div class="panel panel-default">
+                <div class="panel-heading">
+                     Modifier les informations personnelles
+                </div>
+                <div class="panel-body">
+                    <form id="form_profil">
+                        <div class="form-group retour-profil"></div>
+                        <div class="form-group">
+                            <label>Nom*</label>
+                            <input type="text" class="form-control require" name="nom" value="<?=$admin->adm_sNom;?>"/>
+                        </div>
+                        <div class="form-group">
+                            <label>Prénom</label>
+                            <input type="text" class="form-control" name="prenom" value="<?=$admin->adm_sPrenom;?>" />
+                        </div>
+                        <div class="form-group">
+                            <label>Pseudo</label>
+                            <input type="text" class="form-control require pseudo" name="pseudo" value="<?=$admin->adm_sPseudo;?>" />
+                        </div>
+                        <div class="form-group">
+                            <button type="button" class="form-control btn btn-warning" id="profil">Modifier</button>
+                        </div>
+                    </form>
+                </div>
+            </div>
+        </div>
+        <div class=" col-xs-12 col-sm-12 col-md-6">
+            <!-- Advanced Tables -->
+            <div class="panel panel-default">
+                <div class="panel-heading">
+                     Modifier les informations de compte
+                </div>
+                <div class="panel-body">
+                    <form id="form_pass">
+                        <div class="form-group retour-pass"></div>
+                        <div class="form-group">
+                            <label>Ancien mot de passe</label>
+                            <input type="password" class="form-control require apass" name="apass" />
+                        </div>
+                        <div class="form-group">
+                            <label>Nouveau mot de passe</label>
+                            <input type="password" class="form-control require npass" name="npass" />
+                        </div>
+                        <div class="form-group">
+                            <label>Conformer le mot de passe</label>
+                            <input type="password" class="form-control require cpass" name="cpass" />
+                        </div>
+                        <div class="form-group">
+                            <button type="button" class="form-control btn btn-warning" id="pass">Modifier</button>
+                        </div>
+                    </form>
+                    
+                </div>
+            </div>
+            <!--End Advanced Tables -->
+        </div>
+    </div>
+        <!-- /. ROW  -->
+</div>
+       
+</div>

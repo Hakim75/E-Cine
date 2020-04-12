@@ -1,0 +1,136 @@
+
+<div id="page-wrapper" >
+    <div id="page-inner">
+        <div class="row">
+            <div class="col-md-12">
+                <h2>Activité de "<?=$user->usr_sPrenom.' '.$user->usr_sNom;?>"</h2>   
+                <h5>
+                    <div class="row">
+                        <div class="col-xs-12 col-sm-4 col-md-4">
+                            Pseudo: <b><?=$user->usr_sPseudo;?></b>
+                        </div>
+                        <div class="col-xs-12 col-sm-4 col-md-4">
+                            email: <b><?=$user->usr_sEmail;?></b>
+                        </div>
+                        <div class="col-xs-12 col-sm-4 col-md-4">
+                            Inscript(e) depuis le <b><?=$cmn->affDateFrNum($user->usr_dDateIns);?></b>
+                        </div>
+                    </div>
+                </h5>
+            </div>
+        </div>              
+            <!-- /. ROW  -->
+        <hr />
+        <div class="row">
+            <div class="col-md-6 col-sm-12 col-xs-12">           
+                <div class="panel panel-back noti-box">
+                    <span class="icon-box bg-color-blue">
+                        <i class="fa fa-inbox"></i>
+                    </span>
+                    <div class="text-box" >
+                        <p class="main-text">Abonnements </p>
+                        <p class="text-muted"></p>
+                        <p class="text-muted">Dernier abonnement: <?php if(!$last){ ?><i>pas encore d'abonnement à nos jours</i><?php }else{ ?> <b><a href="#"><?=$last->pta_sLibelle; ?>, achevé le <?=$cmn->affDateFrNum($last->jab_dDateFin); ?></a></b><?php }?></p>
+                        <hr />
+                        <p class="text-muted">
+                            <?php if($wait){ ?>
+                            <span class="text-danger"><i class="fa fa-warning text-warning"></i>
+                                Un abonnement <?=$wait->pta_sLibelle." de ".$wait->pta_iDuree;?> mois en attente | 
+                                <a title="Valider la demande" onclick="return confirm('Voulez-vous valider cette demande d\'abonnement de <?=$wait->usr_sNom; ?> (<?=$wait->usr_sPseudo; ?>) ?');" href="controllers/unlocked.php?idJab=<?=$wait->jab_id; ?>&d=<?=$wait->pta_iDuree;?>" class="text-success"><i class="fa fa-check-square-o"></i></a>&nbsp;
+                                <a title="annuler la demande" onclick="return confirm('Voulez-vous annuler la demande d\'abonnement de <?=$wait->usr_sNom; ?> (<?=$wait->usr_sPseudo; ?>) ?');" href="controllers/excluded.php?idJabSupp=<?=$wait->jab_id; ?>" class="text-danger"><i class="fa fa-times"></i></a>
+                            </span>
+                            <br><br>
+                            <?php } ?>
+                            <span class="text-muted color-bottom-txt"><i class="fa fa-cloud"></i>
+                                <?php if($current){ ?>
+                                    Abonnement en cours <b><a href="#"><?=$current->pta_sLibelle; ?>, se termine le <?=$cmn->affDateFrNum($current->jab_dDateFin); ?></a></b>
+                                <?php }else { ?>
+                                    <i>Aucun abonnement en cours</i>    
+                                <?php } ?> 
+                            </span>
+                        </p>
+                    </div>
+                    </div>
+            </div>
+            
+            <div class="col-md-3 col-sm-6 col-xs-6">           
+                <div class="panel panel-primary text-center no-boder bg-color-green">
+                    <div class="panel-body">
+                        <i class="fa fa-money fa-5x"></i>
+                        <h3><?=$total->total;?>€ </h3>
+                    </div>
+                    <div class="panel-footer back-footer-green">
+                        Total des abonnements
+                        
+                    </div>
+                </div>
+            </div>
+            <div class="col-md-3 col-sm-6 col-xs-6"> 
+                <div class="panel panel-primary text-center no-boder bg-color-red">
+                    <div class="panel-body">
+                        <i class="fa fa-eye fa-5x"></i>
+                        <h3><?php echo count($vues); echo count($vues)>1?" vues":" vue";?> </h3>
+                    </div>
+                    <div class="panel-footer back-footer-red">
+                        Films et Séries
+                        
+                    </div>
+                </div> 
+            </div>
+        </div>
+            <!-- /. ROW  -->
+
+        <hr />                
+        <div class="row">
+            <div class="col-md-12 col-sm-12 col-xs-12">           
+                <!-- Advanced Tables -->
+                <div class="panel panel-default">
+                    <div class="panel-heading text-center">
+                        <h3> Ses préférences</h3>
+                    </div>
+                    <div class="panel-body">
+                        <div class="table-responsive">
+                            <table class="table table-striped table-bordered table-hover" id="dataTables-example">
+                                <thead>
+                                    <tr>
+                                        <th  width="80px">Image</th>
+                                        <th>Titre</th>
+                                        <th>Type</th>
+                                        <th>Réalisation</th>
+                                        <th>date de sortie</th>
+                                        <th>catégories</th>
+                                    </tr>
+                                </thead>
+                                <tbody>
+                                    <?php foreach($preferences AS $f){ 
+                                        $categoties = $db->sqlManyResults("SELECT * FROM ".TABLE_VIC." vic 
+										INNER JOIN ".TABLE_CAT." cat ON cat.cat_id=vic.cat_id 
+                                        WHERE vic.vid_id = ?",array("vid_id"=>$f->vid_id));  
+                                    ?>
+                                    <tr>
+                                        <td><img width="80px" src="../<?=$f->vid_sPoster;?>" alt=""></td>
+                                        <td><?=$f->vid_sTitre; ?></td>
+                                        <td><?=$f->vid_sType; ?></td>
+                                        <td><?=$f->vid_sReal; ?></td>
+                                        <td><?=$cmn->affDateFrNum($f->vid_dDateSort); ?></td>
+                                        <td>
+                                            <?php foreach($categoties AS $c){  ?>
+                                            <span class="label label-default"><?=$c->cat_sLib; ?></span>
+                                            <?php } ?>
+                                        </td>
+                                    </tr>
+                                    <?php } ?>
+                                </tbody>
+                            </table>
+                        </div>
+                        
+                    </div>
+                </div>
+                <!--End Advanced Tables -->
+            </div>
+        </div>
+            <!-- /. ROW  -->         
+        </div>
+        <!-- /. PAGE INNER  -->
+</div>
+    <!-- /. PAGE WRAPPER  -->

@@ -11,10 +11,15 @@ require_once('./../models/common.php');
 require_once('./../models/object.php');
 require_once('./../models/query.php');
 require_once('./../models/user.php');
+require_once('./../models/tool.php');
+require_once('./../models/media.php');
+require_once('./../models/activity.php');
 
 $db  = new Query();
 $cmn = new Common();
 $usr = new User();
-
+$too = new Tool();
+$med = new Media();
+$act = new Activity();
 
 ?>

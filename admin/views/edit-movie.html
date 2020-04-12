@@ -1,0 +1,76 @@
+<div id="page-wrapper" >
+    <div id="page-inner">
+        <div class="row">
+            <div class="col-md-12">
+             <h2>Modifier le média</h2>
+             <h5>Editez que quelques informations nécessaires</h5>
+            </div>
+        </div>
+         <!-- /. ROW  -->
+         <hr />
+       
+    <div class="row">
+        <div class="col-xs-12 col-sm-12 col-md-1"></div>
+        <div class="col-xs-12 col-sm-12 col-md-10">
+            <div class="panel panel-default">
+                <div class="panel-heading">
+                     Formulaire d'édition
+                </div>
+                <div class="panel-body">
+                    <form id="form_edit_videos">
+                        <div class="form-group col-md-12 retour"></div>
+                        <div class="row">
+                            <div class="form-group col-xs-12 col-sm-12 col-md-6 ">
+                                <label>Titre*</label>
+                                <input type="text" class="form-control require" name="titre" value="<?=$media->vid_sTitre;?>"/>
+                            </div>
+                            <div class="form-group col-xs-12 col-sm-12 col-md-6 ">
+                                <label>Date de sortie*</label>
+                                <input type="text" class="form-control require" id="datepicker" name="date_sortie" placeholder="jj/mm/aaaa" value="<?=$cmn->dateEN2FR($media->vid_dDateSort);?>"/>
+                            </div>
+                            <div class="form-group col-xs-12 col-sm-12 col-md-6 ">
+                                <label>Réalisateur</label>
+                                <input type="text" class="form-control" name="real" value="<?=$media->vid_sReal;?>"/>
+                            </div>
+                            <div class="form-group col-xs-12 col-sm-12 col-md-6 ">
+                                <label>Poster (<i>Modifier si nécessaire</i>)</label>
+                                <input type="file" class="form-control poster" name="poster" />
+                                <input type="hidden" name="aposter" value="<?=$media->vid_sPoster;?>">
+                                <input type="hidden" name="id" value="<?=$media->vid_id;?>">
+                                <input type="hidden" name="type" value="<?=$media->vid_sType;?>">
+                            </div>
+                            <div class="form-group col-md-12">
+                                <label>Catégorie</label>
+                                <div>
+                                    <?php foreach($categories AS $c){
+                                        $ls = $db->sqlSingleResult("SELECT * FROM ".TABLE_VIC."
+                                                WHERE vid_id = ? AND cat_id = ?",array("vid_id"=>$media->vid_id,"cat_id"=>$c->cat_id));
+                                    ?>
+                                    <div class="checkbox">
+                                        <label>
+                                            <input type="checkbox" name="categorie[]" <?php if($ls){echo "checked='checked'";} ?> value="<?=$c->cat_id; ?>" /><?=$c->cat_sLib; ?>
+                                        </label>
+                                    </div>
+                                    <?php } ?>
+                                </div>
+                            </div>
+                            <div class="form-group col-md-12 ">
+                                <label>Synopsis*</label>
+                                <textarea name="synopsis" class="form-control require" rows="6"><?=$media->vid_sSyno;?></textarea>
+                            </div>
+
+                        </div>
+                        <br>
+                        <div class="form-group">
+                            <button type="button" class="form-control btn btn-warning" id="edit_videos">MODIFIER</button>
+                        </div>
+                    </form>
+                </div>
+                
+            </div>
+        </div>
+    </div>
+        <!-- /. ROW  -->
+</div>
+       
+</div>

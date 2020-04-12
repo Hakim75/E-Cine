@@ -1,6 +1,6 @@
 
         </div>
-        
+
        <script src="assets/js/bootstrap.min.js"></script>
        <script src="assets/js/jquery.metisMenu.js"></script>
         <script src="assets/js/morris/raphael-2.1.0.min.js"></script>
@@ -10,16 +10,48 @@
         <script>
             $(document).ready(function () {
                 $('#dataTables-example').dataTable();
+                $('#film').dataTable();
+                $('#serie').dataTable();
+                $('#saison').dataTable();
+                $('#episode').dataTable();
             });
         </script>
         <script>
             $( function() {
               $( "#datepicker" ).datepicker({dateFormat:'dd/mm/yy'});
-            } );
+              $( "#tabs" ).tabs();
+            });
             </script>
         <script src="assets/js/sign.js"></script>
         <script src="assets/js/tools.js"></script>   
-        <script src="assets/js/media.js"></script>    
+        <script src="assets/js/media.js"></script>
+        <script src="assets/js/activity.js"></script>
+        <?php if($_GET['p']=="movies" || $_GET['p']=="series"){ ?>
+        <script src="assets/js/trie.js"></script>  
+        <?php } ?>  
+        <?php if($_GET['p']=="series"){ ?>
+        <script>
+            $('.panel-collapse').on('hide.bs.collapse', function () {
+                $(this).siblings('.panel-heading').removeClass('active');
+            });
+        </script>
+        <?php } ?> 
+        <?php if($_GET['p']=="view-episode"){ ?>
+        <script>
+            var video = document.querySelector("#videoId");
+            video.onloadedmetadata = function() {
+                var dur = video.duration;
+                hours = Math.floor(dur / 3600);
+                dur %= 3600;
+                minutes = Math.floor(dur / 60);
+                seconds = Math.floor(dur % 60);
+                if(hours.toString().length<2){hours = "0"+hours;}
+                if(minutes.toString().length<2){minutes = "0"+minutes;}
+                if(seconds.toString().length<2){seconds = "0"+seconds;}
+                document.querySelector(".temps").innerHTML = "Durée "+hours+":"+minutes+":"+seconds;
+            }
+        </script>
+        <?php } ?> 
         <script src="assets/js/custom.js"></script>       
       
    </body>

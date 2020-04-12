@@ -37,5 +37,55 @@
         header("location:../?p=admins");
     }
 
+    if(isset($_GET["idFilm"])){
+        $param = array(
+            "vid_iSta"=>1,
+            "vid_id"=>$_GET["idFilm"]
+        );
+        $db->sqlSimpleQuery("UPDATE ".TABLE_VID." SET vid_iSta = ? WHERE vid_id = ?",$param);
+        header("location:../?p=recycle");
+    }
+
+    if(isset($_GET["idSerie"])){
+        $param = array(
+            "vid_iSta"=>1,
+            "vid_id"=>$_GET["idSerie"]
+        );
+        $db->sqlSimpleQuery("UPDATE ".TABLE_VID." SET vid_iSta = ? WHERE vid_id = ?",$param);
+        header("location:../?p=recycle");
+    }
+
+    if(isset($_GET["idEpi"])){
+        $param = array(
+            "epi_iSta"=>1,
+            "epi_id"=>$_GET["idEpi"]
+        );
+        $db->sqlSimpleQuery("UPDATE ".TABLE_EPI." SET epi_iSta = ? WHERE epi_id = ?",$param);
+        header("location:../?p=recycle");
+    }
+
+    if(isset($_GET["idSan"])){
+        $param = array(
+            "san_iSta"=>1,
+            "san_id"=>$_GET["idSan"]
+        );
+        $db->sqlSimpleQuery("UPDATE ".TABLE_SAN." SET san_iSta = ? WHERE san_id = ?",$param);
+        header("location:../?p=recycle");
+    }
+
+    if(isset($_GET["idJab"])){
+        $debut = date("Y-m-d");
+        $maDate = strtotime($debut."+ ".$_GET["d"]." month");
+        $fin = date("Y-m-d",$maDate). "\n";
+        $param = array(
+            "jab_iSta"=>1,
+            "jab_dDateDeb"=> $debut,
+            "jab_dDateFin"=>$fin,
+            "jab_id"=>$_GET["idJab"]
+        );
+        $db->sqlSimpleQuery("UPDATE ".TABLE_JAB." SET jab_iSta = ?, jab_dDateDeb=?,jab_dDateFin=?  WHERE jab_id = ?",$param);
+        header("location:../?p=subscription");
+    }
+
     include("close.php");
 ?>

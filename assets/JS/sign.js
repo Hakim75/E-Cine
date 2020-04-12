@@ -24,7 +24,7 @@ $(document).ready(function () {
             } else {
                 pass.parent("div").removeClass("error");
                 cpass.parent("div").removeClass("error");
-                returne.addClass("fail").html("");
+                returne.removeClass("fail").html("");
                 var data = $("#form_sign-up").serialize();
 
 
@@ -84,7 +84,7 @@ $(document).ready(function () {
         if (nbe == 0) {
 
 
-            returne.addClass("fail").html("");
+            returne.removeClass("fail").html("");
             var data = $("#form_sign-in").serialize();
 
 

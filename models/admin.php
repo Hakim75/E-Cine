@@ -118,44 +118,31 @@ class Admin extends Objects {
 		global $db;
 		global $cmn;
 		
-		$nom = (trim($dataForm['nom']));
-		$prenom = (trim($dataForm['prenom']));
-		$pseudo = (trim($dataForm['pseudo']));
-
+		$nom = trim($dataForm["nom"]);
+		$prenom = ucwords(trim($dataForm["prenom"]));
+		$pseudo = trim($dataForm["pseudo"]);
 		if($prenom==""){
 			$prenom=null;
 		}
-		if($pseudo==""){
-			$pseudo=" ";
-		}
 		
-		if($_FILES['photo']['name']== ""){
-			$tabParams = array('adm_sNom' => $nom,
-							'adm_sPrenom' => $prenom,
-							'adm_sPseudo' => $pseudo,
-							'adm_id' => $_SESSION['adm']);
+		$tabParamsVerifPseudo = array('adm_sPseudo' => $pseudo,
+			'adm_id' => $_SESSION['adm']);
 
-			$result = $db->sqlSimpleQuery('UPDATE '.$this->sTable.' SET adm_sNom = ?, adm_sPrenom = ?, adm_sPseudo = ? WHERE adm_id = ?',$tabParams);
-			return true;
+		$verifPseudo=$db->sqlSingleResult("SELECT COUNT(adm_id) AS nb FROM ".$this->sTable." WHERE adm_sPseudo=? AND adm_id!=?",$tabParamsVerifPseudo);
+
+		if($verifPseudo->nb!=0){
+			return false;
 		}
 		else{
+			$tabParams = array(
+			'adm_sNom' => $nom,
+			'adm_sPrenom' => $prenom,
+			'adm_sPseudo' => $pseudo,
+			'adm_id' => $_SESSION['adm']);
 			
-			$destination = '../assets/img/avatar/';
-			$image = $cmn->uploadFile($_FILES['photo'],$destination);
-			if($image != false){
-						$tabParams = array('adm_sNom' => $nom,
-							'adm_sPrenom' => $prenom,
-							'adm_sPseudo' => $pseudo,
-							'adm_sPhoto' => 'assets/img/avatar/'.$image,
-							'adm_id' => $_SESSION['adm']);
-
-			$result = $db->sqlSimpleQuery('UPDATE '.$this->sTable.' SET adm_sNom = ?, adm_sPrenom = ?, adm_sPseudo = ?, adm_sPhoto = ? WHERE adm_id = ?',$tabParams);
-				return true;
-			}else{
-				return false;
-			}
+			$results = $db->sqlSimpleQuery('UPDATE '.$this->sTable.' SET adm_sNom=?,adm_sPrenom=?,adm_sPseudo=? WHERE adm_id = ?',$tabParams);
+			return true;
 		}
-
 	}
 	
 	//réinitialisation du mot de passe d'un admin secondaire

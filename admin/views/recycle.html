@@ -1,0 +1,163 @@
+<div id="page-wrapper" >
+    <div id="page-inner">
+        <div class="row">
+            <div class="col-md-12">
+             <h2>Corbeille</h2>
+             <h5>Liste des médias supprimés</h5>
+            </div>
+        </div>
+         <!-- /. ROW  -->
+         <hr />
+       
+        <div class="row">
+            <div class="col-md-12">
+                <div id="tabs">
+                    <ul>
+                      <li><a href="#tabs-1">Films (<?=count($films);?>)</a></li>
+                      <li><a href="#tabs-2">Séries (<?=count($series);?>)</a></li>
+                      <li><a href="#tabs-3">Saisons (<?=count($saisons);?>)</a></li>
+                      <li><a href="#tabs-4">Episodes (<?=count($episodes);?>)</a></li>
+                    </ul>
+                    <div id="tabs-1">
+                        <div class="table-responsive">
+                            <table class="table table-striped table-bordered table-hover" id="film">
+                                <thead>
+                                    <tr>
+                                        <th width="60px">Image</th>
+                                        <th>Titre</th>
+                                        <th>Réalisation</th>
+                                        <th>Statut</th>
+                                        <th class="text-center">Action</th>
+                                    </tr>
+                                </thead>
+                                <tbody>
+                                    <?php foreach($films AS $f){ ?>
+                                    <tr>
+                                        <td><img width="60px" src="../<?=$f->vid_sPoster;?>" alt=""></td>
+                                        <td><?=$f->vid_sTitre; ?></td>
+                                        <td><?=$f->vid_sReal; ?></td>
+                                        <td>
+                                            <span class="label label-danger">a été supprimé</span>
+                                        </td>
+                                        <td class="text-center" style="font-size: 17px;">
+                                            <a title="Restaurer le film" onclick="return confirm('Voulez-vous restaurer le film <?=$f->vid_sTitre; ?> ?');" href="controllers/unlocked.php?idFilm=<?=$f->vid_id; ?>" class="text-success"><i class="fa fa-share"></i></a>
+                                        </td>
+                                    </tr>
+                                    <?php } ?>
+                                </tbody>
+                            </table>
+                        </div>
+                    </div>
+                    <div id="tabs-2">
+                        <div class="table-responsive">
+                            <table class="table table-striped table-bordered table-hover" id="serie">
+                                <thead>
+                                    <tr>
+                                        <th>Image</th>
+                                        <th>Titre</th>
+                                        <th>Réalisation</th>
+                                        <th>Nb saison</th>
+                                        <th>Nb épisode</th>
+                                        <th>Statut</th>
+                                        <th class="text-center">Action</th>
+                                    </tr>
+                                </thead>
+                                <tbody>
+                                    <?php foreach($series AS $s){ 
+                                        $saison = $db->sqlManyResults("SELECT * FROM ".TABLE_SAN." WHERE vid_id = ?", array("vid_id"=>$s->vid_id));
+                                        $episode = $db->sqlManyResults("SELECT * FROM ".TABLE_EPI." epi
+                                            INNER JOIN ".TABLE_SAN." san ON san.san_id = epi.san_id
+                                            WHERE san.vid_id = ?", array("vid_id"=>$s->vid_id));    
+                                    ?>
+                                    <tr>
+                                        <td><img width="60px" src="../<?=$s->vid_sPoster;?>" alt=""></td>
+                                        <td><?=$s->vid_sTitre; ?></td>
+                                        <td><?=$s->vid_sReal; ?></td>
+                                        <td><?=count($saison); ?></td>
+                                        <td><?=count($episode); ?></td>
+                                        <td>
+                                            <span class="label label-danger">a été supprimé</span>
+                                        </td>
+                                        <td class="text-center" style="font-size: 17px;">
+                                            <a title="Restaurer la série" onclick="return confirm('Voulez-vous restaurer la série <?=$s->vid_sTitre; ?> ?');" href="controllers/unlocked.php?idSerie=<?=$s->vid_id; ?>" class="text-success"><i class="fa fa-share"></i></a>
+                                        </td>
+                                    </tr>
+                                    <?php } ?>
+                                </tbody>
+                            </table>
+                        </div>
+                    </div>
+                    <div id="tabs-3">
+                        <div class="table-responsive">
+                            <table class="table table-striped table-bordered table-hover" id="saison">
+                                <thead>
+                                    <tr>
+                                        <th>Image</th>
+                                        <th>numéro</th>
+                                        <th>Série</th>
+                                        <th>Nb épisode</th>
+                                        <th>Statut</th>
+                                        <th class="text-center">Action</th>
+                                    </tr>
+                                </thead>
+                                <tbody>
+                                    <?php foreach($saisons AS $s){ 
+                                        $episode = $db->sqlManyResults("SELECT * FROM ".TABLE_EPI."
+                                            WHERE san_id = ?", array("san_id"=>$s->san_id));    
+                                    ?>
+                                    <tr>
+                                        <td><img width="60px" src="../<?=$s->vid_sPoster;?>" alt=""></td>
+                                        <td>Saison <?=$s->san_iNumero; ?></td>
+                                        <td><?=$s->vid_sTitre; ?></td>
+                                        <td><?=count($episode); ?></td>
+                                        <td>
+                                            <span class="label label-danger">a été supprimé</span>
+                                        </td>
+                                        <td class="text-center" style="font-size: 17px;">
+                                            <a title="Restaurer la saison" onclick="return confirm('Voulez-vous restaurer la saison <?=$s->san_iNumero; ?> de la série <?=$s->vid_sTitre; ?> ?');" href="controllers/unlocked.php?idSan=<?=$s->san_id; ?>" class="text-success"><i class="fa fa-share"></i></a>
+                                        </td>
+                                    </tr>
+                                    <?php } ?>
+                                </tbody>
+                            </table>
+                        </div>
+                    </div>
+                    <div id="tabs-4">
+                        <div class="table-responsive">
+                            <table class="table table-striped table-bordered table-hover" id="episode">
+                                <thead>
+                                    <tr>
+                                        <th>Image</th>
+                                        <th>épisode</th>
+                                        <th>Série</th>
+                                        <th>Saison</th>
+                                        <th>Statut</th>
+                                        <th class="text-center">Action</th>
+                                    </tr>
+                                </thead>
+                                <tbody>
+                                    <?php foreach($episodes AS $e){  ?>
+                                    <tr>
+                                        <td><img width="60px" src="../<?=$e->vid_sPoster;?>" alt=""></td>
+                                        <td><b>épisode <?=$e->epi_iNum; ?></b> : <?=$e->epi_sTitre; ?></td>
+                                        <td><?=$s->vid_sTitre; ?></td>
+                                        <td>Saison <?=$s->san_iNumero; ?></td>
+                                        <td>
+                                            <span class="label label-danger">a été supprimé</span>
+                                        </td>
+                                        <td class="text-center" style="font-size: 17px;">
+                                            <a title="Restaurer l'épisode" onclick="return confirm('Voulez-vous restaurer l\'épisode <?=$e->epi_iNum; ?>, saison <?=$e->san_iNumero; ?>  de la série <?=$e->vid_sTitre; ?> ?');" href="controllers/unlocked.php?idEpi=<?=$e->epi_id; ?>" class="text-success"><i class="fa fa-share"></i></a>
+                                        </td>
+                                    </tr>
+                                    <?php } ?>
+                                </tbody>
+                            </table>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <!-- /. ROW  -->
+    </div>
+       
+</div>

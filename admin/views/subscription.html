@@ -1,0 +1,148 @@
+<div id="page-wrapper" >
+    <div id="page-inner">
+        <div class="row">
+            <div class="col-md-12">
+             <h2>Abonnement</h2>
+             <h5>Liste des abonnements clients</h5>
+            </div>
+        </div>
+         <!-- /. ROW  -->
+         <hr />
+       
+        <div class="row">
+            <div class="col-md-12">
+                <div id="tabs">
+                    <ul>
+                      <li><a href="#tabs-1">Abonnements en cours (<?=count($abonnements);?>)</a></li>
+                      <li><a href="#tabs-2">Abonnements en attente (<?=count($attentes);?>)</a></li>
+                      <li><a href="#tabs-3">Abonnements terminés (<?=count($termines);?>)</a></li>
+                      <li><a href="#tabs-4">Abonnements résiliés (<?=count($resilies);?>)</a></li>
+                    </ul>
+                    <div id="tabs-1">
+                        <div class="table-responsive">
+                            <table class="table table-striped table-bordered table-hover" id="film">
+                                <thead>
+                                    <tr>
+                                        <th>Client</th>
+                                        <th>plan tarifaire</th>
+                                        <th>prix</th>
+                                        <th>Durée</th>
+                                        <th>Date début</th>
+                                        <th>Date fin</th>
+                                        <th class="text-center">Action</th>
+                                    </tr>
+                                </thead>
+                                <tbody>
+                                    <?php foreach($abonnements AS $a){ ?>
+                                    <tr>
+                                        <td><a style="color: blue" href="?p=activity&usr=<?=$a->usr_id;?>"><?=$a->usr_sPrenom; ?> <?=$a->usr_sNom; ?> (<?=$a->usr_sEmail; ?>)</a></td>
+                                        <td><?=$a->pta_sLibelle; ?></td>
+                                        <td><?=$a->pta_iPrix; ?> €</td>
+                                        <td><?=$a->pta_iDuree; ?> mois</td>
+                                        <td style="color: green"><?=$cmn->affDateFrNum($a->jab_dDateDeb); ?></td>
+                                        <td style="color: red"><?=$cmn->affDateFrNum($a->jab_dDateFin); ?></td>
+                                        <td class="text-center" style="font-size: 17px;">
+                                            <a title="Résilier l'abonnement" onclick="return confirm('Voulez-vous résilier l\'abonnement de <?=$a->usr_sNom; ?> (<?=$a->usr_sPseudo; ?>) ?');" href="controllers/excluded.php?idJab=<?=$a->jab_id; ?>" class="text-danger"><i class="fa fa-times"></i></a>
+                                        </td>
+                                    </tr>
+                                    <?php } ?>
+                                </tbody>
+                            </table>
+                        </div>
+                    </div>
+                    <div id="tabs-2">
+                        <div class="table-responsive">
+                            <table class="table table-striped table-bordered table-hover" id="serie">
+                                <thead>
+                                    <tr>
+                                        <th>Client</th>
+                                        <th>plan tarifaire</th>
+                                        <th>prix</th>
+                                        <th>Durée</th>
+                                        <th class="text-center">Action</th>
+                                    </tr>
+                                </thead>
+                                <tbody>
+                                    <?php foreach($attentes AS $a){ ?>
+                                    <tr>
+                                        <td><a style="color: blue" href="?p=activity&usr=<?=$a->usr_id;?>"><?=$a->usr_sPrenom; ?> <?=$a->usr_sNom; ?> (<?=$a->usr_sEmail; ?>)</a></td>
+                                        <td><?=$a->pta_sLibelle; ?></td>
+                                        <td><?=$a->pta_iPrix; ?> €</td>
+                                        <td><?=$a->pta_iDuree; ?> mois</td>
+                                        <td class="text-center" style="font-size: 17px;">
+                                            <a title="Valider la demande" onclick="return confirm('Voulez-vous valider cette demande d\'abonnement de <?=$a->usr_sNom; ?> (<?=$a->usr_sPseudo; ?>) ?');" href="controllers/unlocked.php?idJab=<?=$a->jab_id; ?>&d=<?=$a->pta_iDuree;?>" class="text-success"><i class="fa fa-check-square-o"></i></a>&nbsp;
+                                            <a title="annuler la demande" onclick="return confirm('Voulez-vous annuler la demande d\'abonnement de <?=$a->usr_sNom; ?> (<?=$a->usr_sPseudo; ?>) ?');" href="controllers/excluded.php?idJabSupp=<?=$a->jab_id; ?>" class="text-danger"><i class="fa fa-times"></i></a>
+                                        </td>
+                                    </tr>
+                                    <?php } ?>
+                                </tbody>
+                            </table>
+                        </div>
+                    </div>
+                    <div id="tabs-3">
+                        <div class="table-responsive">
+                            <table class="table table-striped table-bordered table-hover" id="saison">
+                                <thead>
+                                    <tr>
+                                        <th>Client</th>
+                                        <th>plan tarifaire</th>
+                                        <th>prix</th>
+                                        <th>Durée</th>
+                                        <th>Date début</th>
+                                        <th>Date fin</th>
+                                    </tr>
+                                </thead>
+                                <tbody>
+                                    <?php foreach($termines AS $a){ ?>
+                                    <tr>
+                                        <td><a style="color: blue" href="?p=activity&usr=<?=$a->usr_id;?>"><?=$a->usr_sPrenom; ?> <?=$a->usr_sNom; ?> (<?=$a->usr_sEmail; ?>)</a></td>
+                                        <td><?=$a->pta_sLibelle; ?></td>
+                                        <td><?=$a->pta_iPrix; ?> €</td>
+                                        <td><?=$a->pta_iDuree; ?> mois</td>
+                                        <td style="color: green"><?=$cmn->affDateFrNum($a->jab_dDateDeb); ?></td>
+                                        <td style="color: red"><?=$cmn->affDateFrNum($a->jab_dDateFin); ?></td>
+                                    </tr>
+                                    <?php } ?>
+                                </tbody>
+                            </table>
+                        </div>
+                    </div>
+                    <div id="tabs-4">
+                        <div class="table-responsive">
+                            <table class="table table-striped table-bordered table-hover" id="episode">
+                                <thead>
+                                    <tr>
+                                        <th>Client</th>
+                                        <th>plan tarifaire</th>
+                                        <th>prix</th>
+                                        <th>Durée</th>
+                                        <th>Date début</th>
+                                        <th>Date fin prévu</th>
+                                        <th>Date de résiliation</th>
+                                        <th>Par</th>
+                                    </tr>
+                                </thead>
+                                <tbody>
+                                    <?php foreach($resilies AS $a){ ?>
+                                    <tr>
+                                        <td><a style="color: blue" href="?p=activity&usr=<?=$a->usr_id;?>"><?=$a->usr_sPrenom; ?> <?=$a->usr_sNom; ?> (<?=$a->usr_sEmail; ?>)</a></td>
+                                        <td><?=$a->pta_sLibelle; ?></td>
+                                        <td><?=$a->pta_iPrix; ?> €</td>
+                                        <td><?=$a->pta_iDuree; ?> mois</td>
+                                        <td style="color: green"><?=$cmn->affDateFrNum($a->jab_dDateDeb); ?></td>
+                                        <td style="color: red"><?=$cmn->affDateFrNum($a->jab_dDateFin); ?></td>
+                                        <td><?=$cmn->affDateFrNum($a->jab_dDateResi); ?></td>
+                                        <td><?=$a->adm_sPrenom; ?> <?=$a->adm_sNom; ?> (<?=$a->adm_sPseudo; ?>)</td>
+                                    </tr>
+                                    <?php } ?>
+                                </tbody>
+                            </table>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <!-- /. ROW  -->
+    </div>
+       
+</div>

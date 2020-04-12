@@ -1,0 +1,42 @@
+<div id="page-wrapper" >
+    <div id="page-inner">
+        <div class="row">
+            <div class="col-md-12">
+             <h2><?=$episode->vid_sTitre;?></h2>
+             <h5><b>Episode : <?=$episode->epi_iNum;?></b> (Saison <?=$episode->san_iNumero;?>)</h5>
+            </div>
+        </div>
+         <!-- /. ROW  -->
+         <hr />
+                
+        <div class="row" id="epi">
+            <div class="col-xs-12 col-sm-4 col-md-2">
+                <img width="100%" src="../<?=$episode->vid_sPoster;?>" alt="<?=$episode->vid_sTitre;?>">
+                <div class="form-group">
+                    <br>
+                    <a title="Supprimer" onclick="return confirm('Voulez-vous suprimer l\'épisode <?=$episode->epi_iNum;?> de la saison <?=$episode->san_iNumero; ?> de <?=$episode->vid_sTitre;?> ?');" href="controllers/excluded.php?idEpi=<?=$episode->epi_id; ?>" class="btn btn-danger form-control">Supprimer <i class="fa fa-trash-o"></i></a>
+                    <br><br>
+                    <a title="Modifier" href="?p=edit-episode&id=<?=$episode->epi_id;?>" class="btn btn-primary form-control">Modifier <i class="fa fa-pencil-square-o"></i></a> &nbsp;
+                </div>
+            </div>
+            <div class="col-xs-12 col-sm-8 col-md-4">
+                <div style="text-decoration: underline;">Sorti le <?=$cmn->affDateFrNum($episode->epi_dDateSor); ?> :</div>
+                <div>Réalisé par <b><?=$episode->vid_sReal;?></b></div>
+                <div>
+                    <br>
+                    <b><?=$episode->epi_sTitre;?></b>
+                    <div class="temps"></div>
+                    <?=$episode->epi_sDescriptif;?>
+                </div>
+                <div><br><span style="text-decoration: underline;">Catégorie(s)</span> : <?php foreach($categoties AS $key=>$c){echo $c->cat_sLib;if($last_key!=$key){echo ',';};}?></div>
+                <div style="color: red"><i>Ajouté le <?=$cmn->affDateTimeFrNum($episode->epi_dDateAjout); ?> le par <b><a href="#" title="<?=$episode->adm_sPrenom.' '.$episode->adm_sNom;?>"><?=$episode->adm_sPseudo;?></a></b></i></div>
+            </div>
+            <div class="col-xs-12 col-sm-12 col-md-6">
+                <video id="videoId" width="100%" src="../<?=$episode->epi_sVideo;?>" controls autoplay />
+            </div>
+        </div>
+           
+        <!-- /. ROW  -->
+    </div>
+       
+</div>

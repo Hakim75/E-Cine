@@ -2,7 +2,7 @@
     if (!isset($_SESSION["adm"])) {
         header("location:?p=login");
     }
-    $adm = $adm->infoAdmin($_SESSION["adm"]);
+    $admin = $adm->infoAdmin($_SESSION["adm"]);
 ?>
 <!DOCTYPE html>
 <html>
@@ -16,6 +16,17 @@
         <?php if($_GET['p']=="categories"){echo "Gestion des catégories";} ?>
         <?php if($_GET['p']=="rate"){echo "Gestion des plans tarifaires";} ?>
         <?php if($_GET['p']=="new-media"){echo "Ajouter un média";} ?>
+        <?php if($_GET['p']=="movies"){echo "Liste des filmes";} ?>
+        <?php if($_GET['p']=="series"){echo "Liste des séries";} ?>
+        <?php if($_GET['p']=="edit-movie"){echo "Editer ".$media->vid_sTitre;} ?>
+        <?php if($_GET['p']=="new-episode"){echo "Nouvel épisode ".$media->vid_sTitre;} ?>
+        <?php if($_GET['p']=="recycle"){echo "Corbeille";} ?>
+        <?php if($_GET['p']=="view-episode"){echo "Détail épisode série ".$episode->vid_sTitre;} ?>
+        <?php if($_GET['p']=="edit-episode"){echo "édition épisode série ".$e->vid_sTitre;} ?>
+        <?php if($_GET['p']=="subscription"){echo "Page abonnements";} ?>
+        <?php if($_GET['p']=="activity"){echo $user->usr_sPrenom." ".$user->usr_sNom;} ?>
+        <?php if($_GET['p']=="profile"){echo $admin->adm_sPrenom." ".$admin->adm_sNom;} ?>
+        <?php if($_GET['p']=="banner"){echo "Bannière de la homme page";} ?>
     </title>
 	<!-- BOOTSTRAP STYLES-->
     <link href="assets/css/bootstrap.css" rel="stylesheet" />
@@ -43,7 +54,7 @@
                 </button>
                 <a class="navbar-brand" href="?p=dashboard"> <img src="../assets/IMG/E-CINE.png"/></a> 
             </div>
-  <div style="color: white;padding: 15px 50px 5px 50px;float: right;font-size: 16px;"> <?=$adm->adm_sPrenom.' '.$adm->adm_sNom;?> &nbsp; <a href="controllers/logout.php" class="btn btn-danger square-btn-adjust">Déconnexion <i class="fa fa-power-off"></i></a> </div>
+  <div style="color: white;padding: 15px 50px 5px 50px;float: right;font-size: 16px;"> <?=$admin->adm_sPrenom.' '.$admin->adm_sNom;?> &nbsp; <a href="controllers/logout.php" class="btn btn-danger square-btn-adjust">Déconnexion <i class="fa fa-power-off"></i></a> </div>
         </nav>   
            <!-- /. NAV TOP  -->
                 <nav class="navbar-default navbar-side" role="navigation">
@@ -60,7 +71,7 @@
                         <a  class="<?php if($_GET['p']=='customers' || $_GET['p']=='activity'){echo 'active-menu';} ?>" href="?p=customers"><i class="fa fa-users fa-2x"></i> Clients</a>
                     </li>
                     <li>
-                        <a  class="<?php if($_GET['p']=='movies' || $_GET['p']=='series' || $_GET['p']=='new-media' || $_GET['p']=='new-episode'){echo 'active-menu';} ?>" href="#"><i class="fa fa-film fa-2x"></i> Gestion médiathèque<span class="fa arrow"></span></a>
+                        <a  class="<?php if($_GET['p']=='recycle' || $_GET['p']=='movies' || $_GET['p']=='series' || $_GET['p']=='new-media' || $_GET['p']=='new-episode' || $_GET['p']=='edit-episode'){echo 'active-menu';} ?>" href="#"><i class="fa fa-film fa-2x"></i> Gestion médiathèque<span class="fa arrow"></span></a>
                         <ul class="nav nav-second-level">
                             <li>
                                 <a href="?p=new-media" style="color:<?php if($_GET['p']=='new-media'){echo '#FF8500';} ?>">Nouveau</a>
@@ -71,19 +82,28 @@
                             <li>
                                 <a href="?p=series" style="color:<?php if($_GET['p']=='series'){echo '#FF8500';} ?>">Séries</a>
                             </li>
+                            <li>
+                                <a href="?p=recycle" style="color:<?php if($_GET['p']=='recycle'){echo '#FF8500';} ?>">Corbeille</a>
+                            </li>
                         </ul>
                     </li> 
                     <li>
                         <a  class="<?php if($_GET['p']=='subscription'){echo 'active-menu';} ?>" href="?p=subscription"><i class="fa fa-inbox fa-2x"></i> Abonnements</a>
                     </li>
                     <li>
-                        <a  class="<?php if($_GET['p']=='categories' || $_GET['p']=='rate'){echo 'active-menu';} ?>" href="#"><i class="fa fa-tasks fa-2x"></i> Paramètres<span class="fa arrow"></span></a>
+                        <a  class="<?php if($_GET['p']=='profile' || $_GET['p']=='banner' || $_GET['p']=='categories' || $_GET['p']=='rate'){echo 'active-menu';} ?>" href="#"><i class="fa fa-tasks fa-2x"></i> Paramètres<span class="fa arrow"></span></a>
                         <ul class="nav nav-second-level">
+                            <li>
+                                <a href="?p=banner" style="color:<?php if($_GET['p']=='banner'){echo '#FF8500';} ?>">Bannière</a>
+                            </li>
                             <li>
                                 <a href="?p=categories" style="color:<?php if($_GET['p']=='categories'){echo '#FF8500';} ?>">Catégories</a>
                             </li>
                             <li>
                                 <a href="?p=rate" style="color:<?php if($_GET['p']=='rate'){echo '#FF8500';} ?>">Plan tarifaire</a>
+                            </li>
+                            <li>
+                                <a href="?p=profile" style="color:<?php if($_GET['p']=='profile'){echo '#FF8500';} ?>">Mon compte</a>
                             </li>
                         </ul>
                     </li> 

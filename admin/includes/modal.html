@@ -105,37 +105,131 @@
     </div>
 </div>
 
+
+<div class="modal fade" id="modalEditBanner<?=$b->ban_id; ?>" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
+    <div class="modal-dialog">
+        <div class="modal-content">
+            <div class="modal-header">
+                <button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>
+                <h4 class="modal-title" id="myModalLabel">Modifier la bannière bannière</h4>
+            </div>
+            <div class="modal-body">
+                <form id="form_edit_banner<?=$b->ban_id; ?>">
+                    <div class="form-group retour<?=$b->ban_id; ?>"></div>
+                    <div class="row">
+                        <div class="form-group col-xs-12 col-sm-12 col-md-6">
+                            <label>Type</label>
+                            <input type="text" class="form-control" readonly="readonly" value="<?=$b->vid_sType;?>"/>
+                        </div>
+                        <div class="form-group col-xs-12 col-sm-12 col-md-6">
+                            <label>Titre</label>
+                            <input type="text" class="form-control" readonly="readonly" value="<?=$b->vid_sTitre;?>"/>
+                        </div>
+                        <div class="form-group col-xs-12 col-sm-12 col-md-6">
+                            <label>Ordre*</label>
+                            <select name="ordre" class="form-control">
+                                <optgroup label="Ordre de passe">
+                                    <?php foreach($banners AS $f){ ?>
+                                    <option value="<?=$f->ban_iOrder;?>" <?php if($f->ban_iOrder==$b->ban_iOrder){echo "selected='selected'";} ?>><?=$f->ban_iOrder;?></option>
+                                    <?php } ?>
+                                </optgroup>
+                            </select> 
+                            <i>Interchangez avec celle à cette ordre</i>
+                        </div>
+                        <div class="form-group col-xs-12 col-sm-12 col-md-6">
+                            <label>Image de bannière</label>
+                            <input type="file" class="form-control banniere" name="banniere" />
+                            <input type="hidden" name="id" value="<?=$b->ban_id;?>">
+                            <input type="hidden" name="ordreAnc" value="<?=$b->ban_iOrder;?>">
+                            <input type="hidden" name="media" value="<?=$b->vid_id;?>">
+                            <input type="hidden" name="banner" value="<?=$b->ban_sBackground;?>">
+                        </div>
+                        <div class="form-group col-md-12">
+                            <label>Mot promotionnel*</label>
+                            <input type="text" class="form-control require<?=$b->ban_id; ?>" name="promo" value="<?=$b->ban_sPromo;?>" />
+                        </div>
+                    </div>
+                </form>
+            </div>
+            <div class="modal-footer">
+                <button type="button" class="btn btn-default" data-dismiss="modal">Fermer</button>
+                <button type="button" class="btn btn-warning edit_banner" rel="<?=$b->ban_id;?>">Modifier</button>
+            </div>
+        </div>
+    </div>
+</div>
+
+
 <div class="modal fade" id="modalViewSerie<?=$s->vid_id;?>" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
     <div class="modal-dialog lg">
         <div class="modal-content">
             <div class="modal-header">
                 <button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>
-                <h4><?=$s->vid_sTitre; ?></h4>
+                <h4><?=$s->vid_sTitre; ?> <a class="btn btn-warning pull-right" href="?p=new-episode&serie=<?=$s->vid_id;?>">Ajouter des épisodes <i class="fa fa-plus"></i></a></h4>
             </div>
             <div class="modal-body">
                 <div class="row">
                     <div class="col-xs-12 col-sm-4 col-md-2">
                         <img src="../<?=$s->vid_sPoster;?>" alt="<?=$s->vid_sTitre;?>">
                     </div>
-                    <div class="col-xs-12 col-sm-8 col-md-5">
-                       <div style="text-decoration: underline;">Sorti le <?=$cmn->affDateFrNum($s->vid_dDateSort); ?> :</div>
-                       <div>Réalisé par <b><?=$s->vid_sReal;?></b></div>
+                    <div class="col-xs-12 col-sm-8 col-md-4">
+                       <div style="text-decoration: underline;">Sortie le <?=$cmn->affDateFrNum($s->vid_dDateSort); ?> :</div>
+                       <div>Réalisée par <b><?=$s->vid_sReal;?></b></div>
                        <div>
                            <br>
                            <?=$s->vid_sSyno;?>
                        </div>
                        <div><br><span style="text-decoration: underline;">Catégorie(s)</span> : <?php foreach($categoties AS $key=>$c){echo $c->cat_sLib;if($last_key!=$key){echo ',';};}?></div>
-                       <div style="color: red"><i>Ajouté le <?=$cmn->affDateTimeFrNum($s->vid_dDateAjout); ?> le par <b><a href="#" title="<?=$s->adm_sPrenom.' '.$s->adm_sNom;?>"><?=$s->adm_sPseudo;?></a></b></i></div>
+                       <div style="color: red"><i>Ajoutée le <?=$cmn->affDateTimeFrNum($s->vid_dDateAjout); ?> le par <b><a href="#" title="<?=$s->adm_sPrenom.' '.$s->adm_sNom;?>"><?=$s->adm_sPseudo;?></a></b></i></div>
                     </div>
-                    <div class="col-xs-12 col-sm-12 col-md-5">
-                        
+                    <div class="col-xs-12 col-sm-12 col-md-6">
+                        <?php
+                            $saisons=$db->sqlManyResults("SELECT * FROM ".TABLE_SAN." WHERE vid_id = ? AND san_iSta=?",array("vid_id"=>$s->vid_id,"san_iSta"=>1));
+                            if(!$saisons){
+                                echo "<i style='color:red;' class='pull-right'>Aucun épisode n'a été enregistré pour cette série</i>";
+                            }
+                            else{    
+                        ?>
+                        <div class="center-block">
+                            <div class="panel-group" id="accordion" role="tablist" aria-multiselectable="true">
+                            <?php foreach($saisons AS $key=>$san){
+                                $episodes = $db->sqlManyResults("SELECT * FROM ".TABLE_EPI." WHERE san_id = ? AND epi_iSta = ?",array("san_id"=>$san->san_id,"epi_iSta"=>1));
+                                ?>
+                            <div class="panel panel-default">
+                              <div class="panel-heading active" role="tab" id="headingOne">
+                                <h4 class="panel-title">
+                                  <a role="button" data-toggle="collapse" data-parent="#accordion" href="#collapseOne" aria-expanded="true" aria-controls="collapseOne">
+                                    Saison <?=$san->san_iNumero; ?>
+                                  </a>
+                                </h4>
+                              </div>
+                              <div id="collapseOne" class="panel-collapse collapse in" role="tabpanel" aria-labelledby="headingOne">
+                                <div class="panel-body">
+                                    <a title="Supprimer" onclick="return confirm('Voulez-vous suprimer la saison <?=$san->san_iNumero; ?> de <?=$s->vid_sTitre;?> ?');" href="controllers/excluded.php?idSan=<?=$san->san_id; ?>" class="btn btn-danger btn-sm">Supprimer la saison <i class="fa fa-trash-o"></i></a> <br><br>
+                                    <ul>
+                                        <?php foreach($episodes AS $e){ ?>
+                                        <li>
+                                            <a title="Voir l'épisode" href="?p=view-episode&id=<?=$e->epi_id;?>" class="text-success"><i class="fa fa-sign-in"></i></a> &nbsp;
+                                            <a title="Modifier" href="?p=edit-episode&id=<?=$e->epi_id;?>" class="text-primary"><i class="fa fa-pencil-square-o"></i></a> &nbsp;
+                                            <a title="Supprimer" onclick="return confirm('Voulez-vous suprimer l\'épisode <?=$e->epi_iNum;?> de la saison <?=$san->san_iNumero; ?> de <?=$s->vid_sTitre;?> ?');" href="controllers/excluded.php?idEpi=<?=$e->epi_id; ?>" class="text-danger"><i class="fa fa-trash-o"></i></a>&nbsp;
+                                            <b><a href="?p=view-episode&id=<?=$e->epi_id;?>">épisode  <?=$e->epi_iNum;?> : <?=$e->epi_sTitre;?></b></a>
+                                        </li>
+                                        <?php } ?>
+                                    </ul>
+                                </div>
+                              </div>
+                            </div>
+                            <?php } ?>
+                          </div>
+                        </div>
+                        <?php } ?>
                     </div>
                 </div>
             </div>
             <div class="modal-footer">
                 <button type="button" class="btn btn-default" data-dismiss="modal">Fermer</button>
-                <a onclick="return confirm('Voulez-vous supprimer la série <?=$s->vid_sLib; ?> ?');" href="controllers/excluded.php?idSerie=<?=$s->vid_id; ?>" class="btn btn-danger">Supprimer</a>
-                <a href="?p=edit-serie&id=<?=$s->vid_id; ?>" class="btn btn-primary">Modifier</a>
+                <a onclick="return confirm('Voulez-vous supprimer la série <?=$s->vid_sTitre;?> ?');" href="controllers/excluded.php?idSerie=<?=$s->vid_id; ?>" class="btn btn-danger">Supprimer</a>
+                <a href="?p=edit-movie&id=<?=$s->vid_id; ?>" class="btn btn-primary">Modifier</a>
             </div>
         </div>
     </div>
@@ -156,6 +250,7 @@
                     <div class="col-xs-12 col-sm-8 col-md-5">
                        <div style="text-decoration: underline;">Sorti le <?=$cmn->affDateFrNum($f->vid_dDateSort); ?> :</div>
                        <div>Réalisé par <b><?=$f->vid_sReal;?></b></div>
+                       <div class="temps<?=$f->vid_id;?>"></div>
                        <div>
                            <br>
                            <?=$f->vid_sSyno;?>
@@ -177,8 +272,21 @@
     </div>
     <script>
         var rel = <?php echo json_encode($f->vid_id, JSON_HEX_TAG); ?>;
-        $('#modalViewMovie'+rel).on('hidden.bs.modal', function () {
+        var videos = $('#modalViewMovie'+rel);
+        videos.on('hidden.bs.modal', function () {
             $(".video"+rel).get(0).pause();
+        });
+        videos.on('shown.bs.modal', function () {
+            $(".video"+rel).get(0).play();
+            var dur = $(".video"+rel).get(0).duration;
+            hours = Math.floor(dur / 3600);
+            dur %= 3600;
+            minutes = Math.floor(dur / 60);
+            seconds = Math.floor(dur % 60);
+            if(hours.toString().length<2){hours = "0"+hours;}
+            if(minutes.toString().length<2){minutes = "0"+minutes;}
+            if(seconds.toString().length<2){seconds = "0"+seconds;}
+            $(".temps"+rel).html("Durée "+hours+":"+minutes+":"+seconds);
         });
     </script>
 </div>

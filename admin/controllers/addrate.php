@@ -3,7 +3,7 @@ include("init.php");
 
 $dataForm = $_REQUEST;
 
-if(!floatval($dataForm["prix"])){
+if(!is_numeric($dataForm["prix"])){
     echo "Le prix doit contenir une valeur numérique";
 }
 else{

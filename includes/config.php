@@ -11,7 +11,7 @@ const SITE_REP    = '';
 // mysql
 // base de données
 const BDD_SGBD = 'mysql';
-const BDD_DATABASE	= 'eCine';
+const BDD_DATABASE	= 'ecine';
 const BDD_HOST 		= 'localhost';
 const BDD_PASSWORD	= '';
 const BDD_USER		= 'root';
@@ -23,6 +23,8 @@ const TABLE_EPI		= 't_episode_epi';
 const TABLE_PTA		= 't_plan_tarifaire_pta';
 const TABLE_USR		= 't_users_usr';
 const TABLE_VID		= 't_videos_vid';
+const TABLE_SAN     = 't_saison_san';
+const TABLE_BAN     = 't_banner_ban';
 
 
 // tables de jointure

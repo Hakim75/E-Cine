@@ -38,18 +38,63 @@
 
     if(isset($_GET["idFilm"])){
         $param = array(
+            "vid_iSta"=>2,
             "vid_id"=>$_GET["idFilm"]
         );
-        $db->sqlSimpleQuery("DELETE FROM ".TABLE_VID." WHERE vid_id = ?",$param);
+        $db->sqlSimpleQuery("UPDATE ".TABLE_VID." SET vid_iSta = ? WHERE vid_id = ?",$param);
         header("location:../?p=movies");
     }
 
     if(isset($_GET["idSerie"])){
         $param = array(
+            "vid_iSta"=>2,
             "vid_id"=>$_GET["idSerie"]
         );
-        $db->sqlSimpleQuery("DELETE FROM ".TABLE_VID." WHERE vid_id = ?",$param);
+        $db->sqlSimpleQuery("UPDATE ".TABLE_VID." SET vid_iSta = ? WHERE vid_id = ?",$param);
         header("location:../?p=series");
+    }
+
+    if(isset($_GET["idEpi"])){
+        $param = array(
+            "epi_iSta"=>2,
+            "epi_id"=>$_GET["idEpi"]
+        );
+        $db->sqlSimpleQuery("UPDATE ".TABLE_EPI." SET epi_iSta = ? WHERE epi_id = ?",$param);
+        header("location:../?p=series");
+    }
+
+    if(isset($_GET["idSan"])){
+        $param = array(
+            "san_iSta"=>2,
+            "san_id"=>$_GET["idSan"]
+        );
+        $db->sqlSimpleQuery("UPDATE ".TABLE_SAN." SET san_iSta = ? WHERE san_id = ?",$param);
+        header("location:../?p=series");
+    }
+
+    if(isset($_GET["idJab"])){
+        $param = array(
+            "jab_iSta"=>2,
+            "jab_dDateResi"=>date("Y-m-d"),
+            "adm_id"=>$_SESSION['adm'],
+            "jab_id"=>$_GET["idJab"]
+        );
+        $db->sqlSimpleQuery("UPDATE ".TABLE_JAB." SET jab_iSta = ?, jab_dDateResi = ?, adm_id = ? WHERE jab_id = ?",$param);
+        header("location:../?p=subscription");
+    }
+
+    if(isset($_GET["idJabSupp"])){
+        $param = array(
+            "jab_id"=>$_GET["idJabSupp"]
+        );
+        $db->sqlSimpleQuery("DELETE FROM ".TABLE_JAB." WHERE jab_id = ?",$param);
+        header("location:../?p=subscription");
+    }
+
+    if(isset($_GET["idBan"]) AND isset($_GET["order"])){
+        $db->sqlSimpleQuery("DELETE FROM ".TABLE_BAN." WHERE ban_id = ?",array("ban_id"=>$_GET["idBan"]));
+        $db->sqlSimpleQuery("UPDATE ".TABLE_BAN." SET ban_iOrder = ban_iOrder - 1 WHERE ban_iOrder>? ",array("ban_iOrder"=>$_GET["order"]));
+        header("location:../?p=banner");
     }
 
     include("close.php");

@@ -431,34 +431,5 @@ public	function affDateTimeFrNum($date){
     return $str;
 }
 
-	public	function telCongo($tel){
-
-		$tab = explode(" ",$tel);
-		$tel=implode("",$tab);
-		$long = strlen($tel);
-		if($long==9){
-			$phone=$tel;
-		}
-		else{
-			$fin = $long-1;
-			$extre = substr($tel,-9,$fin);
-			$phone=$extre;
-		}
-		
-		$extreFinal =  substr($phone,0,2);
-		
-		if($extreFinal == "05" || $extreFinal ==5 || $extreFinal =="06" || $extreFinal ==6 || $extreFinal =="04" || $extreFinal ==4 || $extreFinal =="01" || $extreFinal ==1 || $extreFinal =="22" || $extreFinal ==22){
-			if(strlen($phone)==9){
-				return $phone;
-			}
-			else{
-				return false;
-			}
-		}
-		else{
-			return false;
-		}
-	}
-
 }
 ?>
