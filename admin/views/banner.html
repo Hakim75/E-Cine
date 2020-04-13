@@ -34,7 +34,7 @@
                                 </tr>
                             </thead>
                             <tbody>
-                                <?php foreach($banners AS $b){ ?>
+                                <?php $nb= count($banners);foreach($banners AS $b){ ?>
                                 <tr>
                                     <td><?=$b->ban_iOrder; ?></td>
                                     <td><a href="../<?=$b->ban_sBackground; ?>" target="_blank"><img width="100px" src="../<?=$b->ban_sBackground; ?>" alt=""></a></td>
@@ -48,7 +48,9 @@
                                         Sorti le <?=$cmn->affDateFrNum($b->vid_dDateSort); ?>
                                     </td>
                                     <td class="text-center" style="font-size: 17px;">
+                                        <?php if($nb>1){ ?>
                                         <a title="Supprimer" onclick="return confirm('Voulez-vous Supprimer la bannière \'<?=$b->ban_sPromo; ?>\' de <?=$b->vid_sTitre; ?> ?');" href="controllers/excluded.php?idBan=<?=$b->ban_id; ?>&order=<?=$b->ban_iOrder; ?>" class="text-danger"><i class="fa fa-trash-o"></i></a> &nbsp;
+                                        <?php } ?>
                                         <a data-toggle="modal" data-target="#modalEditBanner<?=$b->ban_id; ?>" title="Modifier" href="#" class="text-primary"><i class="fa fa-pencil-square-o"></i></a>
                                     </td>
                                 </tr>

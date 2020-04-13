@@ -1,0 +1,8 @@
+<p>Page des plans tarifaires</p>
+<?php 
+    //Envoyer le get "rate" vers payment.html
+    //var_dump($rate);   
+     foreach($rate AS $r){
+?>
+<a href="?p=payment&rate=<?=$r->pta_id;?>"><?=$r->pta_sLibelle;?> <?=$r->pta_iPrix;?>€</a><br>
+<?php } ?>

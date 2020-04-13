@@ -62,7 +62,6 @@ $(document).ready(function () {
     $("#profil").click(function () {
         var nbe = 0;
         var pseudo = $(".pseudo");
-        var email = $(".email");
 
 
         var returne = $(".returne_profil");
@@ -92,33 +91,19 @@ $(document).ready(function () {
                 error: (xhr, status, error) => alert(xhr.responseText)
 
             })
-                .done(back => {
-                    if (back == "Le format de votre mail est incorrect" || back == "mail déja utilisé") {
-                        returne.addClass("fail").html(back);
-                        email.parent("div").addClass("error");
-                        pseudo.parent("div").removeClass("error");
+            .done(back => {
+                if (back == "pseudo déja utilisé") {
+                    returne.addClass("fail").html(back);
+                    pseudo.parent("div").addClass("error");
 
-                    } else if (back == "pseudo déja utilisé") {
-                        returne.addClass("fail").html(back);
-                        pseudo.parent("div").addClass("error");
-                        email.parent("div").removeClass("error");
-
-                    } else {
-                        email.parent("div").removeClass("error");
-                        pseudo.parent("div").removeClass("error");
-                        returne.removeClass("fail").addClass("success").html(back);
-
-
-                    }
-
-
-
-                });
-
+                } else {
+                    pseudo.parent("div").removeClass("error");
+                    returne.removeClass("fail").addClass("success").html(back);
+                }
+            });
 
         } else {
             returne.addClass("fail").html("Veuillez remplir les champs");
-
         }
     });
 });

@@ -76,40 +76,28 @@ class User extends Objects {
 		
 		$nom = trim($dataForm["nom"]);
 		$prenom = ucwords(trim($dataForm["prenom"]));
-		$email = strtolower(trim($dataForm["email"]));
 		$pseudo = trim($dataForm["pseudo"]);
 		if($prenom==""){
 			$prenom=null;
 		}
-		 $tabParamsVerifEmail = array('usr_sEmail' => $email,
-			'usr_id' => $_SESSION['usr']);
 			
 		$tabParamsVerifPseudo = array('usr_sPseudo' => $pseudo,
 			'usr_id' => $_SESSION['usr']);
 					
-		$verifEmail=$db->sqlSingleResult("SELECT COUNT(usr_id) AS nb FROM ".$this->sTable." WHERE usr_sEmail=? AND usr_id!=?",$tabParamsVerifEmail);
 		$verifPseudo=$db->sqlSingleResult("SELECT COUNT(usr_id) AS nb FROM ".$this->sTable." WHERE usr_sPseudo=? AND usr_id!=?",$tabParamsVerifPseudo);
-		if($verifEmail->nb!=0){
-			return "email";
+		if($verifPseudo->nb!=0){
+			return "pseudo";
 		}
 		else{
-			if($verifPseudo->nb!=0){
-				return "pseudo";
-			}
-			else{
-				$tabParams = array(
-				'usr_sNom' => $nom,
-				'usr_sPrenom' => $prenom,
-				'usr_sEmail' => $email,
-				'usr_sPseudo' => $pseudo,
-				'usr_id' => $_SESSION['usr']);
-				
-				$results = $db->sqlSimpleQuery('UPDATE '.$this->sTable.' SET usr_sNom=?,usr_sPrenom=?,usr_sEmail=?,usr_sPseudo=? WHERE usr_id = ?',$tabParams);
-				return "oui";
-			}
+			$tabParams = array(
+			'usr_sNom' => $nom,
+			'usr_sPrenom' => $prenom,
+			'usr_sPseudo' => $pseudo,
+			'usr_id' => $_SESSION['usr']);
 			
+			$results = $db->sqlSimpleQuery('UPDATE '.$this->sTable.' SET usr_sNom=?,usr_sPrenom=?,usr_sPseudo=? WHERE usr_id = ?',$tabParams);
+			return "oui";
 		}
-
 	}
 	
 	public function createUser($dataForm)

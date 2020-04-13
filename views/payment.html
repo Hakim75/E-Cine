@@ -1,0 +1,17 @@
+<?php
+    //var_dump($rate);
+?>
+<p>Page paiement formule <?=$rate->pta_sLibelle;?> à <?=$rate->pta_iPrix;?>€</p>
+
+paiement uniquement par paypal
+<form id="form_paiement">
+    <div class="returne"></div>
+    <div>
+        <label> Email paypal</label> <br>
+        <input type="email" name="email" class="require email">
+        <input type="hidden" name="tarif" value="<?=$rate->pta_id;?>">
+    </div>
+    <div>
+        <button type="button" id="paiement"> Valider</button>
+    </div>
+</form>

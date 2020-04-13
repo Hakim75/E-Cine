@@ -1,0 +1,11 @@
+<p><a href="?p=profil">Modifier le profil</a></p>
+<p><a href="?p=pass">Modifier le mot de passe</a></p>
+<p><a href="?p=invoices">Mes factures</a></p>
+
+<?php if(!$current AND !$wait){ ?>
+    <p><a href="?p=subscription">Prendre un abonnement</a></p>
+<?php }elseif($current AND !$wait) { ?>
+abonnement en cours
+<?php }elseif(!$current AND $wait){ ?>
+    abonnement en attente | <a href="controllers/excluded.php?idJab=<?=$wait->jab_id;?>" onclick="return confirm('Confirmez-vous l\'annulation de l\'abonnment <?=$wait->pta_sLibelle;?> ?');" title="annuler" style="color:red" href="">X</a>
+<?php } ?>

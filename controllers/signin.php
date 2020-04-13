@@ -12,13 +12,6 @@ if ($login) {
     echo "Identifiant ou mot de passe incorrects";
 }
 
-
-
-
-
-
-
-
 include("close.php");
 
 ?>

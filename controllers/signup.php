@@ -19,8 +19,5 @@ if (!$cmn->verifMail($dataForm["email"])) {
 
 }
 
-
-
-
 include("close.php");
 ?>
