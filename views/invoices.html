@@ -1,4 +1,24 @@
-Page factures
+<h2>Page liste des factures</h2>
 <?php
-    var_dump($invoices);
+    //var_dump($invoices);
 ?>
+<table border="1" cellpadding="6" style="border-collapse: collapse;width: 60%;text-align: left;">
+    <thead>
+        <tr >
+            <th>Abonnement</th>
+            <th>Coût</th>
+            <th>Début</th>
+            <th>Fin</th>
+        </tr>
+    </thead>
+    <tbody>
+        <?php foreach($invoices AS $i){ ?>
+        <tr>   
+            <td><?=$i->pta_sLibelle;?></td>
+            <td><?=$i->pta_iPrix;?> €</td>
+            <td>le <?=$cmn->affDateFrNum($i->jab_dDateDeb);?></td>
+            <td>le <?=$cmn->affDateFrNum($i->jab_dDateFin);?></td>
+        </tr>
+        <?php } ?>
+    </tbody>
+</table>
