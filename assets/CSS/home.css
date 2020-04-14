@@ -1,0 +1,106 @@
+
+.header {
+    background: black;
+    text-align: center;
+    padding: 1.7em;
+}
+@font-face {
+    font-family: "rob-black";
+    src: url("../fonts/Roboto-Black.ttf") format("truetype");
+}
+@font-face {
+    font-family: "rob-med";
+    src: url("../fonts/Roboto-Medium.ttf") format("truetype");
+}
+
+body.home {
+    background: url("./../img/fond-color_home.png"),
+                url("./../img/fond-img-home.png");
+                overflow-x: hidden;
+    overflow-x: hidden;
+}
+
+body {
+    overflow-x: hidden;
+}
+
+.cta-home {
+    background: #FF8500;
+    color: white;
+    border: none;
+    width: 70%;
+    line-height: 35px;
+    border-radius: 6px;
+    text-align: center;
+    font-family: "rob-med";
+    margin-top: 50px;
+}
+
+
+.center-home {
+    height: 82vh;
+    width: 98%;
+    margin: auto;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    flex-direction: column;
+}
+
+.title-home {
+    font-size: 25px;
+    line-height: 30px;
+    text-align: center;
+    font-family: "rob-black";
+    color: white;
+    margin-bottom:10px;
+}
+.description-home {
+    font-size: 18px;
+    text-align: center;
+    font-family: "rob-black";
+    color: #FF8500;
+    margin-top: 5px;
+}
+
+@media (min-width:768px){
+    .cta-home {
+        margin-top: 70px;
+        font-size: 130%;
+        line-height: 45px;
+    }
+    
+    .center-home {
+        width: 70%;
+    }
+    
+    .title-home {
+        font-size: 32px;
+        line-height: 48px;
+    }
+
+    .description-home {
+        font-size: 26px;
+    }
+}
+
+@media (min-width:1025px){
+    .cta-home {
+        line-height: 35px;
+    }
+    
+    
+    .center-home {
+        height: 82vh;
+        width: 40%;
+        margin: auto;
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        flex-direction: column;
+    }
+    
+    .description-home {
+        font-size: 18px;
+    }
+}

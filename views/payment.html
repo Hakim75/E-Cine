@@ -3,15 +3,28 @@
 ?>
 <p>Page paiement formule <?=$rate->pta_sLibelle;?> à <?=$rate->pta_iPrix;?>€</p>
 
-paiement uniquement par paypal
-<form id="form_paiement">
-    <div class="returne"></div>
-    <div>
-        <label> Email paypal</label> <br>
-        <input type="email" name="email" class="require email">
-        <input type="hidden" name="tarif" value="<?=$rate->pta_id;?>">
-    </div>
-    <div>
-        <button type="button" id="paiement"> Valider</button>
-    </div>
-</form>
+
+
+
+<main id="main">
+    <div class="marge"></div>
+    <h1 class="text-center">paiement uniquement par paypal</h1>
+    <section class="rectangle-identifier">
+        <form id="form_paiement" class="information-form">
+            <div class="returne"></div>
+            <div>
+                <label class="label">Email paypal *:</label>
+                <img src="assets/img/Frame.png" alt="">
+                <input type="email" name="email" class="require email inputs" />
+                <input type="hidden" name="tarif" value="<?=$rate->pta_id;?>">
+            </div>
+    
+            <div>
+                <button onclick="return false;" type="submit" id="paiement" class="button">Valider</button>
+            </div>
+            <div>
+                <p class="question"> <a href="?p=subscription" id="creer-un-compte">Retour pour changer de plan tarifaire</a></p>
+            </div>
+        </form>
+    </section>
+</main>

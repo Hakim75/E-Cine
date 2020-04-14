@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Hôte : 127.0.0.1:3306
--- Généré le :  Dim 12 avr. 2020 à 20:20
+-- Généré le :  mar. 14 avr. 2020 à 10:03
 -- Version du serveur :  5.7.24
 -- Version de PHP :  5.6.40
 
@@ -39,7 +39,7 @@ CREATE TABLE IF NOT EXISTS `tj_abonnement_jab` (
   `adm_id` int(11) DEFAULT NULL,
   `jab_dDateResi` date DEFAULT NULL,
   PRIMARY KEY (`jab_id`)
-) ENGINE=InnoDB AUTO_INCREMENT=3 DEFAULT CHARSET=utf8mb4;
+) ENGINE=InnoDB AUTO_INCREMENT=5 DEFAULT CHARSET=utf8mb4;
 
 --
 -- Déchargement des données de la table `tj_abonnement_jab`
@@ -47,7 +47,8 @@ CREATE TABLE IF NOT EXISTS `tj_abonnement_jab` (
 
 INSERT INTO `tj_abonnement_jab` (`jab_id`, `jab_iSta`, `jab_dDateDeb`, `jab_dDateFin`, `usr_id`, `pta_id`, `adm_id`, `jab_dDateResi`) VALUES
 (1, 1, '2020-04-12', '2020-04-11', 1, 1, NULL, NULL),
-(2, 1, '2020-04-12', '2020-05-12', 1, 1, NULL, NULL);
+(2, 1, '2020-04-12', '2020-05-12', 1, 1, NULL, NULL),
+(4, 1, '2020-04-13', '2021-04-13', 3, 3, NULL, NULL);
 
 -- --------------------------------------------------------
 
@@ -100,7 +101,7 @@ CREATE TABLE IF NOT EXISTS `tj_videos_categorie_vic` (
   `vid_id` int(11) NOT NULL,
   `cat_id` int(11) NOT NULL,
   PRIMARY KEY (`vic_id`)
-) ENGINE=MyISAM AUTO_INCREMENT=13 DEFAULT CHARSET=latin1;
+) ENGINE=MyISAM AUTO_INCREMENT=16 DEFAULT CHARSET=latin1;
 
 --
 -- Déchargement des données de la table `tj_videos_categorie_vic`
@@ -108,8 +109,9 @@ CREATE TABLE IF NOT EXISTS `tj_videos_categorie_vic` (
 
 INSERT INTO `tj_videos_categorie_vic` (`vic_id`, `vid_id`, `cat_id`) VALUES
 (1, 1, 4),
-(12, 2, 3),
-(11, 2, 2);
+(15, 3, 4),
+(14, 2, 3),
+(13, 2, 2);
 
 -- --------------------------------------------------------
 
@@ -309,7 +311,7 @@ CREATE TABLE IF NOT EXISTS `t_users_usr` (
 --
 
 INSERT INTO `t_users_usr` (`usr_id`, `usr_iSta`, `usr_sNom`, `usr_sPrenom`, `usr_sEmail`, `usr_sPseudo`, `usr_sPass`, `usr_dDateIns`) VALUES
-(1, 1, 'GUILLOUX', 'Brontis', 'b.guilloux@hetic.net', 'bg', 'ba3253876aed6bc22d4a6ff53d8406c6ad864195ed144ab5c87621b6c233b548baeae6956df346ec8c17f5ea10f35ee3cbc514797ed7ddd3145464e2a0bab413', '2020-04-10'),
+(1, 1, 'GUILLOUXs', 'Brontis', 'b.guilloux@hetic.net', 'bg', 'ba3253876aed6bc22d4a6ff53d8406c6ad864195ed144ab5c87621b6c233b548baeae6956df346ec8c17f5ea10f35ee3cbc514797ed7ddd3145464e2a0bab413', '2020-04-10'),
 (2, 1, 'FOUSSADIER', 'Marie-Tiphaine', 'mt.foussadier@hetic.net', 'mt', 'ba3253876aed6bc22d4a6ff53d8406c6ad864195ed144ab5c87621b6c233b548baeae6956df346ec8c17f5ea10f35ee3cbc514797ed7ddd3145464e2a0bab413', '2020-04-10'),
 (3, 1, 'CHOMEL', 'Denys', 'chomel@hetic.net', 'chomel', 'ba3253876aed6bc22d4a6ff53d8406c6ad864195ed144ab5c87621b6c233b548baeae6956df346ec8c17f5ea10f35ee3cbc514797ed7ddd3145464e2a0bab413', '2020-04-10');
 
@@ -333,7 +335,7 @@ CREATE TABLE IF NOT EXISTS `t_videos_vid` (
   `vid_dDateAjout` datetime NOT NULL,
   `adm_id` int(11) NOT NULL,
   PRIMARY KEY (`vid_id`)
-) ENGINE=InnoDB AUTO_INCREMENT=3 DEFAULT CHARSET=utf8mb4;
+) ENGINE=InnoDB AUTO_INCREMENT=4 DEFAULT CHARSET=utf8mb4;
 
 --
 -- Déchargement des données de la table `t_videos_vid`
@@ -341,7 +343,8 @@ CREATE TABLE IF NOT EXISTS `t_videos_vid` (
 
 INSERT INTO `t_videos_vid` (`vid_id`, `vid_iSta`, `vid_sType`, `vid_sTitre`, `vid_sSyno`, `vid_sReal`, `vid_sVideo`, `vid_sPoster`, `vid_dDateSort`, `vid_dDateAjout`, `adm_id`) VALUES
 (1, '1', 'Film', 'skate board', 'C\'est une vidéo des jeunes skateurs sur des routes hallucinantes. Un vrai délice', 'Jim anon', 'assets/media/film/video/skate-board_1586556106.mp4', 'assets/media/film/poster/skate-board_1586556106.PNG', '2020-04-06', '2020-04-11 00:01:46', 1),
-(2, '1', 'Série', 'Casa de papel', 'Un groupe de gens qui n\'ont plus rien à perdre est regroupe par un homme appelé le Professeur, pour braquer la fabrique de la monnaie.', 'Don juan', NULL, 'assets/media/serie/poster/casa-de-papel_1586556508.jpg', '2017-09-05', '2020-04-11 00:08:27', 1);
+(2, '1', 'Série', 'Casa de papel', 'Un groupe de gens qui n\'ont plus rien à perdre est regroupe par un homme appelé le Professeur, pour braquer la fabrique de la monnaie.', 'Don juan', NULL, 'assets/media/serie/poster/casa-de-papel_1586759185.jpg', '2017-09-05', '2020-04-11 00:08:27', 1),
+(3, '1', 'Film', 'Into the wild', 'test test test', 'Sébastien', 'assets/media/film/video/into-the-wild_1586768376.mp4', 'assets/media/film/poster/into-the-wild_1586768376.jpg', '2020-04-12', '2020-04-13 10:59:35', 1);
 COMMIT;
 
 /*!40101 SET CHARACTER_SET_CLIENT=@OLD_CHARACTER_SET_CLIENT */;

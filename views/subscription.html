@@ -1,8 +1,18 @@
-<p>Page des plans tarifaires</p>
-<?php 
-    //Envoyer le get "rate" vers payment.html
-    //var_dump($rate);   
-     foreach($rate AS $r){
-?>
-<a href="?p=payment&rate=<?=$r->pta_id;?>"><?=$r->pta_sLibelle;?> <?=$r->pta_iPrix;?>€</a><br>
-<?php } ?>
+
+
+<main id="main">
+    <div class="marge"></div>
+    <h1 class="text-center">Choisissez votre forfait</h1>
+    <div class="container">
+        <section class="tarif">
+            <?php foreach($rate AS $r){?>
+            <div class="card">
+                <h3><?=$r->pta_sLibelle;?></h3>
+                <h2><?=$r->pta_iPrix;?>€ / <?=$r->pta_iDuree;?> mois</h2>
+                <p><?=nl2br($r->pta_sAvantage);?></p>
+                <a href="?p=payment&rate=<?=$r->pta_id;?>">Je le Choisis</a>
+            </div>
+            <?php } ?>
+        </section>
+    </div>
+</main>

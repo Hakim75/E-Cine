@@ -37,10 +37,10 @@ const TABLE_VIC     = 'tj_videos_categorie_vic';
 
 
 // expéditeur mail
-const EXP_MAIL		= 'jarce2frise@gmail.com';
+const EXP_MAIL		= 'admin@e-cine.xyz'; //kT7@zdmzTK
 
 // destinataire emails plateforme
-const DEST_MAIL		= 'jarce2frise@gmail.com';
+const DEST_MAIL		= 'admin@e-cine.xyz';
 
 
 // statuts

@@ -271,12 +271,13 @@
         </div>
     </div>
     <script>
-        var rel = <?php echo json_encode($f->vid_id, JSON_HEX_TAG); ?>;
-        var videos = $('#modalViewMovie'+rel);
-        videos.on('hidden.bs.modal', function () {
+        //var videos = $('#modalViewMovie'+rel);
+        $('#modalViewMovie'+<?php echo json_encode($f->vid_id, JSON_HEX_TAG); ?>).on('hidden.bs.modal', function () {
+            var rel = <?php echo json_encode($f->vid_id, JSON_HEX_TAG); ?>;
             $(".video"+rel).get(0).pause();
         });
-        videos.on('shown.bs.modal', function () {
+        $('#modalViewMovie'+<?php echo json_encode($f->vid_id, JSON_HEX_TAG); ?>).on('shown.bs.modal', function () {
+            var rel = <?php echo json_encode($f->vid_id, JSON_HEX_TAG); ?>;
             $(".video"+rel).get(0).play();
             var dur = $(".video"+rel).get(0).duration;
             hours = Math.floor(dur / 3600);

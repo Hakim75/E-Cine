@@ -1,24 +1,35 @@
-<h2>Page liste des factures</h2>
-<?php
-    //var_dump($invoices);
-?>
-<table border="1" cellpadding="6" style="border-collapse: collapse;width: 60%;text-align: left;">
-    <thead>
-        <tr >
-            <th>Abonnement</th>
-            <th>Coût</th>
-            <th>Début</th>
-            <th>Fin</th>
-        </tr>
-    </thead>
-    <tbody>
-        <?php foreach($invoices AS $i){ ?>
-        <tr>   
-            <td><?=$i->pta_sLibelle;?></td>
-            <td><?=$i->pta_iPrix;?> €</td>
-            <td>le <?=$cmn->affDateFrNum($i->jab_dDateDeb);?></td>
-            <td>le <?=$cmn->affDateFrNum($i->jab_dDateFin);?></td>
-        </tr>
-        <?php } ?>
-    </tbody>
-</table>
+
+<main id="main">
+    <div class="marge"></div>
+    <h1 class="text-center">Factures</h1>
+
+    <div id="invoiceholder">
+
+        <div id="headerimage"></div>
+        <div id="invoice" class="effect2">
+          
+          
+          <div id="invoice-bot">
+            
+            <div id="table">
+              <table class="table">
+                <tr class="tabletitle">
+                  <td class="item"><h2>Abonnement</h2></td>
+                  <td class="Hours"><h2>Coût</h2></td>
+                  <td class="Rate"><h2>Début</h2></td>
+                  <td class="subtotal"><h2>Fin</h2></td>
+                </tr>
+                <?php foreach($invoices AS $i){ ?>
+                <tr class="service">
+                  <td class="tableitem"><p class="itemtext"><?=$i->pta_sLibelle;?> / <?=$i->pta_iDuree;?> mois</p></td>
+                  <td class="tableitem"><p class="itemtext"><?=$i->pta_iPrix;?> €</p></td>
+                  <td class="tableitem"><p class="itemtext">le <?=$cmn->affDateFrNum($i->jab_dDateDeb);?></p></td>
+                  <td class="tableitem"><p class="itemtext">le <?=$cmn->affDateFrNum($i->jab_dDateFin);?></p></td>
+                </tr>
+                <?php } ?>
+              </table>
+            </div><!--End Table-->
+          </div><!--End InvoiceBot-->
+        </div><!--End Invoice-->
+      </div><!-- End Invoice Holder-->
+</main>

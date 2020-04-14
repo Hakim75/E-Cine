@@ -1,0 +1,171 @@
+
+.rectangle-utilisateur {
+  width: 98%;
+  margin: 0 auto;
+  margin-top: 20px;
+  margin-bottom: 60px;
+  background-color: #161616;
+  display: flex;
+  justify-content: space-between;
+  flex-direction: column;
+  padding-bottom: 30px;
+}
+
+.rectangle-utilisateur article {
+  padding-left: 10px;
+  padding-top: 30px;
+}
+
+.rectangle-utilisateur article:last-child {
+  border-top: 1px solid gray;
+  margin-top: 40px;
+}
+
+
+.rectangle-utilisateur p {
+  font-size: 13px;
+  padding-top: 30px;
+}
+
+.rectangle-utilisateur p a {
+  font-size: 17px;
+}
+
+.forfait {
+  font-weight: bold;
+  font-size: 18px;
+}
+
+.rectangle-utilisateur table {
+  margin-top: 15px;
+}
+
+.nameForfait {
+  font-weight: bold;
+  font-size: 22px;
+}
+
+.tarif {
+  display: flex;
+  flex-wrap: wrap;
+  margin-bottom: 8em;
+}
+
+.tarif .card {
+  width: 100%;
+  margin: 20px;
+  background: white;
+  padding: 40px 20px 20px 20px;
+  border-radius: 6px;
+  color: #161616;
+  text-align: center;
+}
+
+.tarif h3 {
+  text-transform: uppercase;
+  padding-bottom: 23px;
+  border-bottom: 2px solid #FF8500;
+  display: inline-block;
+}
+
+.tarif h2 {
+  padding-top: 30px;
+}
+
+
+.tarif p {
+  color: gray;
+  line-height: 35px;
+  margin-top: 30px;
+}
+
+.tarif a {
+  line-height: 25px;
+  padding: 12px 24px 12px 24px;
+  background: #FF8500;
+  color: white;
+  text-transform: uppercase;
+  margin-top: 50px;
+  display: inline-block;
+}
+
+.tarif a:hover {
+  text-decoration: none;
+}
+
+
+
+
+#invoice h2{font-size: .9em;}
+#invoice h3{
+  font-size: 1.2em;
+  font-weight: 300;
+  line-height: 2em;
+}
+#invoice p{
+  font-size: .7em;
+  color: #333;
+  line-height: 1.2em;
+}
+
+#invoiceholder{
+  width:100%;
+  height: 100%;
+  padding-top: 50px;
+}
+
+#invoice{
+  position: relative;
+  margin: 0 auto;
+  width: 700px;
+  background: #FFF;
+  margin-bottom: 5em;
+}
+
+[id*='invoice-']{ /* Targets all id with 'col-' */
+  border-bottom: 1px solid #EEE;
+  padding: 30px;
+}
+
+#invoice-top{min-height: 120px;}
+#invoice-mid{min-height: 120px;}
+#invoice-bot{ min-height: 250px;}
+
+.info{
+  display: block;
+  float:left;
+  margin-left: 20px;
+}
+.title{
+  float: right;
+}
+.title p{text-align: right;}
+#project{margin-left: 52%;}
+.table{
+  width: 100%;
+  border-collapse: collapse;
+}
+.table td{
+  padding: 5px 0 5px 15px;
+  border: 1px solid #EEE
+}
+.tabletitle{
+  padding: 5px;
+  background: #1c1c1c;
+}
+.service{border: 1px solid #EEE;}
+.item{width: 50%;}
+.itemtext{font-size: .9em;}
+
+@media (min-width:1024px){
+  .rectangle-utilisateur {
+    width: 50%;
+  }
+  .tarif .card {
+    width: 30%;
+  }
+
+  .tarif {
+    justify-content: space-between;
+  }
+}

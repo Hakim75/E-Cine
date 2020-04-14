@@ -1,26 +1,117 @@
-.error input, .error textarea {
+@import url('https://fonts.googleapis.com/css2?family=Raleway:ital,wght@0,300;0,400;0,600;0,700;0,800;1,400;1,500&display=swap');
+@font-face {
+    font-family: "rob-black";
+    src: url("../fonts/Roboto-Black.ttf") format("truetype");
+}
+@font-face {
+    font-family: "rob-med";
+    src: url("../fonts/Roboto-Medium.ttf") format("truetype");
+}
+@font-face {
+    font-family: "rob-reg";
+    src: url("../fonts/Roboto-Regular.ttf") format("truetype");
+}
+* {
+    box-sizing: border-box;
+    margin: 0;
+    padding: 0;
+  }
 
-    border: 1px solid red;
+
+  ::-webkit-scrollbar {
+	width: 9px;
+	height: 5px;
+}
+::-webkit-scrollbar-button {
+	width: 0px;
+	height: 0px;
+}
+::-webkit-scrollbar-thumb {
+	background: #FF8500;
+	border: 31px none #FF8500;
+	border-radius: 5px;
+}
+::-webkit-scrollbar-thumb:hover {
+	background: #af600a;
+}
+::-webkit-scrollbar-thumb:active {
+	background: #af600a;
+}
+::-webkit-scrollbar-track {
+	background: #f0f0f0;
+	border: 1px solid #ffffff;
+	border-radius: 5px;
+}
+::-webkit-scrollbar-track:hover {
+	background: #f2f2f2;
+}
+::-webkit-scrollbar-track:active {
+	background: #f5f5f5;
+}
+::-webkit-scrollbar-corner {
+	background: transparent;
+}
+
+
+body {
+    /*font-family: 'Raleway', sans-serif;*/
+    margin: 0;
+    padding: 0;
+    overflow-x: hidden;
+    font-size: 13.5px;
+    letter-spacing: 2px;
+    font-family: "rob-reg";
+    font-weight: 400;
+    background-color: black;
+}
+
+a{
+    text-decoration: none;
+}
+
+h1 {
+    color: #FF8500;
+}
+
+.container {
+    width: 95%;
+    max-width: 1366px;
+    margin: auto;
+}
+
+.error input, .error textarea {
+    background: rgba(255,0,0,0.1);
+    border: 1px solid rgba(255,0,0,0.5);
+    color: white;
 }
 
 .error label {
-
     color: red;
 }
 
 .success {
-    color: green;
-
-
+    background: rgb(7, 143, 7);
+    border: 1px solid rgba(7, 143, 7, 0.5);
+    color: white;
+    text-align: center;
+    width: 100%;
+    border-radius: 4px;
+    border-style: none;
+    padding: 12px;
+    outline: none;
+    font-size: 90%;
 }
 
 .fail {
-    color: red;
-
-}
-
-body {
-    overflow-x: hidden;
+    background: rgb(230, 38, 38);
+    border: 1px solid rgba(255,0,0,0.5);
+    color: white;
+    width: 100%;
+    border-radius: 4px;
+    border-style: none;
+    padding: 12px;
+    outline: none;
+    font-size: 90%;
 }
 
 .media {

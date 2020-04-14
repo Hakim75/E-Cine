@@ -1,39 +1,41 @@
-<h2>Inscription</h2>
 
+<main class="rectangle-identifier">
+    <h1 class="sign-in-text">Créer un compte</h1>
+    <form id="form_sign-up" class="information-form">
+        <div class="returne"></div>
+        <div>
+            <label class="label">Votre nom *:</label>
+            <input type="text" name="nom" class="require nom inputs" />
+        </div>
+        <div>
+            <label class="label">Votre prénom:</label>
+            <input type="text" name="prenom" class="inputs" />
+        </div>
 
+        <div> 
+            <label class="label">Votre e-mail *:</label>
+            <input type="email" name="email" class="require email inputs"/>
+        </div>
 
-<form id="form_sign-up">
+        <div>
+            <label class="label">Votre pseudo *:</label>
+            <input type="text" name="pseudo" class="require pseudo inputs" />
+        </div>
+        <div>
+            <label class="label">Votre Mot de passe *:</label>
+            <input type="password" name="pass" class="require pass inputs" />
+        </div>
 
-    <div class="returne">
+        <div> 
+            <label class="label">Confirmation *:</label>
+            <input type="password" name="cpass" class="require cpass inputs"/>
+        </div>
 
-
-    </div>
-    <div>
-        <label> Votre nom *</label> <br>
-        <input type="text" name="nom" class="require nom">
-    </div>
-    <div>
-        <label> Votre prénom </label> <br>
-        <input type="text" name="prenom">
-    </div>
-    <div>
-        <label> Votre e-mail *</label> <br>
-        <input type="text" name="email" class="require email">
-    </div>
-    <div>
-        <label> Votre pseudo *</label> <br>
-        <input type="text" name="pseudo" class="require pseudo">
-    </div>
-    <div>
-        <label> Votre Mot de passe *</label> <br>
-        <input type="password" name="pass" class="require pass">
-    </div>
-    <div>
-        <label> Confirmation *</label> <br>
-        <input type="password" name="cpass" class="require cpass">
-    </div>
-    <div>
-        <button type="button" id="sign-up"> S'inscrire</button>
-    </div>
-    <a href="?p=sign-in"> Se Connecter </a>
-</form>
+        <div>
+            <button onclick="return false;" type="submit" id="sign-up" class="button">Créer</button>
+        </div>
+        <div>
+            <p class="question">Avez vous déjà un compte ? <a href="?p=sign-in" id="creer-un-compte">Connectez-vous.</a></p>
+        </div>
+    </form>
+</main>

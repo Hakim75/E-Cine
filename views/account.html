@@ -1,11 +1,39 @@
-<p><a href="?p=profil">Modifier le profil</a></p>
-<p><a href="?p=pass">Modifier le mot de passe</a></p>
-<p><a href="?p=invoices">Mes factures</a></p>
 
-<?php if(!$current AND !$wait){ ?>
-    <p><a href="?p=subscription">Prendre un abonnement</a></p>
-<?php }elseif($current AND !$wait) { ?>
-abonnement en cours
-<?php }elseif(!$current AND $wait){ ?>
-    abonnement en attente | <a href="controllers/excluded.php?idJab=<?=$wait->jab_id;?>" onclick="return confirm('Confirmez-vous l\'annulation de l\'abonnment <?=$wait->pta_sLibelle;?> ?');" title="annuler" style="color:red" href="">X</a>
-<?php } ?>
+
+<main id="main">
+    <div class="marge"></div>
+    <h1 class="text-center">Mon compte</h1>
+    <section class="rectangle-utilisateur">
+        <article>
+            <h3>Information de profil</h3>
+            <p><?=$customer->usr_sPrenom." ".$customer->usr_sNom;?> (<i><?=$customer->usr_sEmail?></i>) | <a href="?p=profil">Modifier <i class="far fa-edit"></i></a></p>
+            <p>Mot de passe | <a href="?p=pass">Modifier <i class="far fa-edit"></i></a></p>
+        </article>
+        <article>
+            <h3>Gestion d'abonnement</h3>
+            <p>
+                <?php if(!$current AND !$wait){ ?>
+                    <a href="?p=subscription" class="button inputs"><i class="fas fa-inbox"></i> Prenez un nouvel abonnement pour profiter programmes  </a></p>
+                <?php }elseif($current AND !$wait) { ?>
+                <span style="color: green;font-size: 16px;">abonnement en cours</span>
+                <table style="width:100%">
+                    <tr>
+                        <td class="forfait">Votre forfait: </td>
+                        <td class="nameForfait"><span style="color: #FF8500;font-size: 16px;"><?=$current->pta_sLibelle;?></span></td>
+                        <td><i>expirera le <?=$cmn->affDateFrNum($current->jab_dDateFin);?></i></td>
+                    </tr>
+                    <tr>
+                        <td></td>
+                        <td><?=$current->pta_iPrix;?>€ / <?=$current->pta_iDuree;?> mois</td>
+                        <td></td>
+                    </tr>
+                </table>
+                <?php }elseif(!$current AND $wait){ ?>
+                    <span style="color: #FF8500;font-size: 16px;"></span>abonnement $wait->pta_sLibelle;?>(<?=$wait->pta_sLibelle;?> de <?=$wait->pta_iDuree;?> mois à <?=$wait->pta_iPrix;?>€) en attente</span> | <a href="controllers/excluded.php?idJab=<?=$wait->jab_id;?>" onclick="return confirm('Confirmez-vous l\'annulation de l\'abonnment <?=$wait->pta_sLibelle;?> ?');" title="annuler" style="color:red" href="">Annuler <i class="fas fa-times"></i></a>
+                <?php } ?>
+            </p>
+            <p>Mes factures | <a href="?p=invoices">Consulter le liste <i class="fas fa-sign-in-alt"></i></a></p>
+        </article>
+        
+    </section>
+</main>
