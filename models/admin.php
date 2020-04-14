@@ -84,7 +84,7 @@ class Admin extends Objects {
 				$contenu = $salutation.' '.$nom.' '.$prenom.', <br>';
 				$contenu.= 'Vos identifiants administrateur sont : <br>';
 				$contenu.= '1. Email: '.$email.'<br>2. Mot de passe: '.$pass.' <br>';
-				$contenu.= '<a href="'+SITE_ROOT_ADMIN+'">Veuillez cliquer sur ce lien pour y accéder</a>';
+				$contenu.= '<a href="'.SITE_ROOT_ADMIN.'">Veuillez cliquer sur ce lien pour y accéder</a>';
 				
 				$retour = $cmn->envoiMail($email,$sujet,$contenu);
 				return $retour;
