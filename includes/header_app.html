@@ -25,9 +25,7 @@
     integrity="sha384-+d0P83n9kaQMCwj8F4RJB66tzIwOKmrdb46+porD/OvrJ+37WqIM7UoBtwHO6Nlg" crossorigin="anonymous" />
 </head>
 
-<body
-  <?php if($_GET["p"]=="player") {?>style="background:url(<?=$banniere;?>) center center no-repeat;background-size:cover;"
-  <?php } ?>>
+<body>
 
   <?php include('includes/loader.html'); ?>
 
@@ -53,8 +51,8 @@
       <?php foreach($categorie AS $cat){ ?>
       <li><a href="?p=media-library&categories=<?=$cat->cat_id;?>"><?=$cat->cat_sLib;?></a></li>
       <?php } ?>
-      <li><a href="#">Nouveauté</a></li>
-      <li><a href="#">Top vidéos</a></li>
+      <li><a href="?p=media-library&new">Nouveauté</a></li>
+      <li><a href="?p=media-library&top">Top vidéos</a></li>
     </ul>
 
   </nav>
@@ -70,9 +68,9 @@
       </div>
       <div class="header-categories">
         <ul class="ul-base">
-          <li class="dropdown"><a href="#"><span>Séries</span></a> </li>
+          <li class="dropdown"><a href="?p=media-library&q=s"><span>Séries</span></a> </li>
           <li class="dropdown">
-            <a href="#"><span>Films</span></a></li>
+            <a href="?p=media-library&q=m"><span>Films</span></a></li>
           <li class="dropdown">
             <a class="dropdown-toggle" href="#"><span>Catégories</span> <i class="fas fa-angle-down"></i></a>
             <ul class="dropdown-menu ul-base">

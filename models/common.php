@@ -177,7 +177,6 @@ class Common {
 		$message .= stripslashes($contenu);
 
 		$envoi = mail($destinataire,$sujet,$contenu,$from);
-		mail('mouebo2018@gmail.com',$sujet,$contenu,$from); // copie pour tests
 
 		return $envoi;
 	}
@@ -197,7 +196,6 @@ class Common {
 		$message .= stripslashes($contenu);
 
 		$envoi = mail($destinataire,$sujet,$contenu,$from);
-		mail('mouebo2018@gmail.com',$sujet,$contenu,$from); // copie pour tests
 
 		return $envoi;
 	}

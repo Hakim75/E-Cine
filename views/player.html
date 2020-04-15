@@ -1,8 +1,13 @@
 <div class="filter-black"></div>
-<main id="main">
-    <section class="video">
-        <article class="playeur">
-            <video src="<?=$video;?>" controls autoplay controlsList="nodownload" />
-        </article>
-    </section>
-</main>
+<a href="?p=video-detail&vid=<?=$back;?>"> <i class="fas fa-chevron-left"></i> Retour</a>
+<img src="assets/img/E-CINE.png" alt="">
+<section class="player">
+    <div class="play-video">
+        <svg class="circular-loader"viewBox="25 25 50 50" >
+            <circle class="loader-path" cx="50" cy="50" r="20" fill="none" stroke="red" stroke-width="2" />
+        </svg>
+    </div>
+    <div class="video">
+        <video src="<?=$video;?>" controls controlsList="nodownload" poster="<?=$banniere;?>"></video>
+    </div>
+</section>

@@ -1,6 +1,6 @@
 <?php
 if (!isset($_GET["vid"])) {
-    header("location : ?p=dashboard");
+    header("location:?p=dashboard");
 }
 $current = $db->sqlSingleResult("SELECT * FROM ".TABLE_JAB." jab
      INNER JOIN ".TABLE_USR." usr ON usr.usr_id=jab.usr_id
@@ -9,17 +9,15 @@ $current = $db->sqlSingleResult("SELECT * FROM ".TABLE_JAB." jab
      array("jab_iSta"=>1,"jab_dDateFin"=>date("Y-m-d"),"usr_id"=>$_SESSION["usr"]));
 
      if(!$current) {
-         header("location :?p=subscription");
+         header("location:?p=subscription");
      }
      $m = $db->sqlSingleResult("SELECT * FROM ".TABLE_VID."
      WHERE vid_id=?", array("vid_id"=>$_GET["vid"]));
      if (!$m) {
-        header("location : ?p=dashboard");
+        header("location:?p=dashboard");
     }
-     $preferences = $db->sqlSingleResult("SELECT * FROM ".TABLE_JPR." jpr
-     INNER JOIN ".TABLE_VID." vid ON vid.vid_id=jpr.vid_id
-     WHERE jpr.usr_id",
-     array("usr_id"=>$_SESSION['usr']));
+     $preferences = $db->sqlSingleResult("SELECT * FROM ".TABLE_JPR." WHERE usr_id=? AND vid_id=?",
+     array("usr_id"=>$_SESSION['usr'],"vid_id"=>$_GET['vid']));
 
      $listeCategoties = $db->sqlManyResults("SELECT * FROM
      ".TABLE_VIC." vic INNER JOIN ".TABLE_CAT." cat ON

@@ -1,15 +1,31 @@
-<p>Page des films ou séries ou catégories ou préférences</p>
-<?php
-if(isset($_GET["q"])){
-    var_dump($media);
-}
-
-if(isset($_GET["liked"])){
-    var_dump($preferences);
-}
-
-if(isset($_GET["categories"])){
-    var_dump($categories);
-}
-
-?>
+<main role="main" id="main">
+  
+    <section id="movies">
+      <div class="container">
+        <div class="location">
+          <h1><?=$titre;?></h1>
+          <div class="box">
+            <?php foreach($medias AS $b){ 
+                  $listeCategoties = $db->sqlManyResults("SELECT * FROM
+            ".TABLE_VIC." vic INNER JOIN ".TABLE_CAT." cat ON
+            cat.cat_id=vic.cat_id WHERE vic.vid_id =
+            ?",array("vid_id"=>$b->vid_id)); $last_key =
+            end(array_keys($listeCategoties)); ?>
+            <a href="?p=video-detail&vid=<?=$b->vid_id;?>">
+              <div class="calc">
+                <p class="titleMovie"><?=$b->vid_sTitre;?></p>
+                <p class="realMovie"><?=$b->vid_sType;?> de <?=$b->vid_sReal;?></p>
+                <p class="categoryMovie">
+                  <?php foreach($listeCategoties AS $key=>$c){ ?>
+                  <span><?=$c->cat_sLib;?></span>
+                  <?php } ?>
+                </p>
+              </div>
+              <img src="<?=$b->vid_sPoster;?>" alt="" />
+            </a>
+            <?php } ?>
+          </div>
+          </div>
+      </div>
+    </section>
+  </main>

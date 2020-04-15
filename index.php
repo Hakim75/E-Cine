@@ -48,6 +48,9 @@ switch($displayedPage){
 	case 'home';
 		$headerfootersuffix = '_home';
 	break;
+	case 'player';
+		$headerfootersuffix = '_play';
+	break;
 	default :
 		$headerfootersuffix = '_app';
 	break;
