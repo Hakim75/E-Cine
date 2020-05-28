@@ -1,23 +1,39 @@
-
 <main class="rectangle-identifier">
-    <h1 class="sign-in-text">S'identifier</h1>
-    <form id="form_sign-in" class="information-form">
-        <div class="returne"></div>
-        <div>
-            <label for="email" class="label">Email/Pseudo:</label>
-            <input type="text" id="email" name="login" class="require login inputs" />
-        </div>
+  <h1 class="sign-in-text">Connectez-vous</h1>
+  <form id="form_sign-in" class="information-form">
+    <div class="returne"></div>
+    <div>
+      <label for="email" class="label">Email/Pseudo:</label>
+      <input
+        type="text"
+        id="email"
+        name="login"
+        placeholder="johndoe@gmail.com"
+        class="require login inputs"
+      />
+    </div>
 
-        <div> 
-            <label for="password" class="label">Mot de passe:</label>
-            <input type="password" id="password" name="pass" class="require pass inputs"/>
-        </div>
+    <div>
+      <label for="password" class="label">Mot de passe:</label>
+      <input
+        type="password"
+        id="password"
+        name="pass"
+        placeholder="********"
+        class="require pass inputs"
+      />
+    </div>
 
-        <div>
-            <button onclick="return false;" type="submit" id="sign-in" class="button">S'identifier</button>
-        </div>
-        <div>
-            <p class="question">Première visite sur E-CINE ? <a href="?p=sign-up" id="creer-un-compte">Inscrivez-vous.</a></p>
-        </div>
-    </form>
+    <div>
+      <button onclick="return false;" type="submit" id="sign-in" class="button">
+        Continuer
+      </button>
+    </div>
+    <div>
+      <p class="question">
+        Première visite sur E-CINE ?
+        <a href="?p=sign-up" id="creer-un-compte">Inscrivez-vous.</a>
+      </p>
+    </div>
+  </form>
 </main>

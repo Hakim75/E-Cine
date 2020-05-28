@@ -13,7 +13,7 @@ const SITE_REP    = '';
 const BDD_SGBD = 'mysql';
 const BDD_DATABASE	= 'ecine';
 const BDD_HOST 		= 'localhost';
-const BDD_PASSWORD	= '';
+const BDD_PASSWORD	= 'root';
 const BDD_USER		= 'root';
 
 // tables principales

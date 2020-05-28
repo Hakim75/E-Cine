@@ -1,30 +1,33 @@
-
 <main id="main">
-    <div class="marge"></div>
-    <h1 class="text-center">Modifier mon mot de passe</h1>
-    <section class="rectangle-identifier">
-        <form id="form_pass" class="information-form">
-            <div class="returne_pass"></div>
-            <div>
-                <label class="label">Ancien mot de passe *:</label>
-                <input type="password" name="apass" class="require apass inputs" />
-            </div>
-            <div>
-                <label class="label">Nouveau mot de passe *:</label>
-                <input type="password" name="npass" class="require npass inputs" />
-            </div>
-    
-            <div>
-                <label class="label">Confirmer le mot de passe *:</label>
-                <input type="password" name="cpass" class="require cpass inputs" />
-            </div>
-    
-            <div>
-                <button onclick="return false;" type="submit" id="pass" class="button">Modifier</button>
-            </div>
-            <div>
-                <p class="question"> <a href="?p=account" id="creer-un-compte">Retour au compte</a></p>
-            </div>
-        </form>
-    </section>
+  <div class="marge"></div>
+  <h1 class="text-center">Modifier mon mot de passe</h1>
+  <section class="rectangle-identifier">
+    <form id="form_pass" class="information-form">
+      <div class="returne_pass"></div>
+      <div>
+        <label class="label">Ancien mot de passe *:</label>
+        <input type="password" name="apass" class="require apass inputs" />
+      </div>
+      <div>
+        <label class="label">Nouveau mot de passe *:</label>
+        <input type="password" name="npass" class="require npass inputs" />
+      </div>
+
+      <div>
+        <label class="label">Confirmez le mot de passe *:</label>
+        <input type="password" name="cpass" class="require cpass inputs" />
+      </div>
+
+      <div>
+        <button onclick="return false;" type="submit" id="pass" class="button">
+          Modifier
+        </button>
+      </div>
+      <div>
+        <p class="question">
+          <a href="?p=account" id="creer-un-compte">Retour au compte</a>
+        </p>
+      </div>
+    </form>
+  </section>
 </main>

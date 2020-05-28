@@ -7,8 +7,10 @@
       ".TABLE_VIC." vic INNER JOIN ".TABLE_CAT." cat ON cat.cat_id=vic.cat_id
       WHERE vic.vid_id = ?",array("vid_id"=>$b->vid_id)); $last_key =
       end(array_keys($listeCategoties)); ?>
-      <div class="slide <?php if($b->ban_iOrder==1){ echo 'active';}?>"
-        style="background-image: url('<?=$b->ban_sBackground;?>');"></div>
+      <div
+        class="slide <?php if($b->ban_iOrder==1){ echo 'active';}?>"
+        style="background-image: url('<?=$b->ban_sBackground;?>');"
+      ></div>
       <?php } ?>
 
       <button class="arrow left-arrow" id="left">
@@ -35,7 +37,10 @@
           <a href="?p=video-detail&vid=<?=$b->vid_id;?>">
             <div class="calc">
               <p class="titleMovie"><?=$b->vid_sTitre;?></p>
-              <p class="realMovie"><?=$b->vid_sType;?> de <?=$b->vid_sReal;?></p>
+              <p class="realMovie">
+                <?=$b->vid_sType;?> de
+                <?=$b->vid_sReal;?>
+              </p>
               <p class="categoryMovie">
                 <?php foreach($listeCategoties AS $key=>$c){ ?>
                 <span><?=$c->cat_sLib;?></span>
@@ -57,10 +62,14 @@
           cat.cat_id=vic.cat_id WHERE vic.vid_id =
           ?",array("vid_id"=>$b->vid_id)); $last_key =
           end(array_keys($listeCategoties)); ?>
-          <a href="?p=video-detail&vid=<?=$b->vid_id;?>"><img src="<?=$b->vid_sPoster;?>" alt="" />
+          <a href="?p=video-detail&vid=<?=$b->vid_id;?>"
+            ><img src="<?=$b->vid_sPoster;?>" alt="" />
             <div class="calc">
               <p class="titleMovie"><?=$b->vid_sTitre;?></p>
-              <p class="realMovie">de <?=$b->vid_sReal;?></p>
+              <p class="realMovie">
+                de
+                <?=$b->vid_sReal;?>
+              </p>
               <p class="categoryMovie">
                 <?php foreach($listeCategoties AS $key=>$c){ ?>
                 <span><?=$c->cat_sLib;?></span>
@@ -73,7 +82,7 @@
         <?php } ?>
 
         <?php if($series){ ?>
-        <h1 class="">série</h1>
+        <h1 class="">Séries</h1>
         <div class="box">
           <?php foreach($series AS $b){ 
                 $listeCategoties = $db->sqlManyResults("SELECT * FROM
@@ -84,44 +93,50 @@
           <a href="?p=video-detail&vid=<?=$b->vid_id;?>">
             <div class="calc">
               <p class="titleMovie"><?=$b->vid_sTitre;?></p>
-              <p class="realMovie">de <?=$b->vid_sReal;?></p>
+              <p class="realMovie">
+                de
+                <?=$b->vid_sReal;?>
+              </p>
               <p class="categoryMovie">
                 <?php foreach($listeCategoties AS $key=>$c){ ?>
                 <span><?=$c->cat_sLib;?></span>
                 <?php } ?>
               </p>
-            </div><img src="<?=$b->vid_sPoster;?>" alt="" />
+            </div>
+            <img src="<?=$b->vid_sPoster;?>" alt="" />
           </a>
           <?php } ?>
         </div>
         <?php } ?>
 
         <?php if($populars){ ?>
-          <h1>Populaires</h1>
-          <div class="box">
-            <?php foreach($populars AS $b){ 
+        <h1>Populaires</h1>
+        <div class="box">
+          <?php foreach($populars AS $b){ 
               $listeCategoties = $db->sqlManyResults("SELECT * FROM
-              ".TABLE_VIC." vic INNER JOIN ".TABLE_CAT." cat ON
-              cat.cat_id=vic.cat_id WHERE vic.vid_id =
-              ?",array("vid_id"=>$b->vid_id)); $last_key =
-              end(array_keys($listeCategoties)); ?>
-            <a href="?p=video-detail&vid=<?=$b->vid_id;?>">
-              <img src="<?=$b->vid_sPoster;?>" alt="" />
-              <div class="calc">
-                <p class="titleMovie"><?=$b->vid_sTitre;?></p>
-                <p class="realMovie">de <?=$b->vid_sReal;?></p>
-                <p class="categoryMovie">
-                  <?php foreach($listeCategoties AS $key=>$c){ ?>
-                  <span><?=$c->cat_sLib;?></span>
-                  <?php } ?>
-                </p>
-              </div>
-            </a>
-            <?php } ?>
-          </div>
+          ".TABLE_VIC." vic INNER JOIN ".TABLE_CAT." cat ON
+          cat.cat_id=vic.cat_id WHERE vic.vid_id =
+          ?",array("vid_id"=>$b->vid_id)); $last_key =
+          end(array_keys($listeCategoties)); ?>
+          <a href="?p=video-detail&vid=<?=$b->vid_id;?>">
+            <img src="<?=$b->vid_sPoster;?>" alt="" />
+            <div class="calc">
+              <p class="titleMovie"><?=$b->vid_sTitre;?></p>
+              <p class="realMovie">
+                de
+                <?=$b->vid_sReal;?>
+              </p>
+              <p class="categoryMovie">
+                <?php foreach($listeCategoties AS $key=>$c){ ?>
+                <span><?=$c->cat_sLib;?></span>
+                <?php } ?>
+              </p>
+            </div>
+          </a>
           <?php } ?>
-        
         </div>
+        <?php } ?>
+      </div>
     </div>
   </section>
 </main>

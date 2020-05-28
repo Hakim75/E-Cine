@@ -1,41 +1,70 @@
-
 <main class="rectangle-identifier">
-    <h1 class="sign-in-text">Créer un compte</h1>
-    <form id="form_sign-up" class="information-form">
-        <div class="returne"></div>
-        <div>
-            <label class="label">Votre nom *:</label>
-            <input type="text" name="nom" class="require nom inputs" />
-        </div>
-        <div>
-            <label class="label">Votre prénom:</label>
-            <input type="text" name="prenom" class="inputs" />
-        </div>
+  <h1 class="sign-in-text">Créer un compte</h1>
+  <form id="form_sign-up" class="information-form">
+    <div class="returne"></div>
+    <div>
+      <label class="label">Votre nom* :</label>
+      <input
+        type="text"
+        name="nom"
+        placeholder="Doe"
+        class="require nom inputs"
+      />
+    </div>
+    <div>
+      <label class="label">Votre prénom :</label>
+      <input type="text" name="prenom" placeholder="John" class="inputs" />
+    </div>
 
-        <div> 
-            <label class="label">Votre e-mail *:</label>
-            <input type="email" name="email" class="require email inputs"/>
-        </div>
+    <div>
+      <label class="label">Votre e-mail* :</label>
+      <input
+        type="email"
+        name="email"
+        placeholder="johndoe@gmail.com"
+        class="require email inputs"
+      />
+    </div>
 
-        <div>
-            <label class="label">Votre pseudo *:</label>
-            <input type="text" name="pseudo" class="require pseudo inputs" />
-        </div>
-        <div>
-            <label class="label">Votre Mot de passe *:</label>
-            <input type="password" name="pass" class="require pass inputs" />
-        </div>
+    <div>
+      <label class="label">Votre pseudo* :</label>
+      <input
+        type="text"
+        name="pseudo"
+        placeholder="johndoe1983"
+        class="require pseudo inputs"
+      />
+    </div>
+    <div>
+      <label class="label">Votre mot de passe* :</label>
+      <input
+        type="password"
+        name="pass"
+        placeholder="********"
+        class="require pass inputs"
+      />
+    </div>
 
-        <div> 
-            <label class="label">Confirmation *:</label>
-            <input type="password" name="cpass" class="require cpass inputs"/>
-        </div>
+    <div>
+      <label class="label">Confirmez votre mot de passe* :</label>
+      <input
+        type="password"
+        name="cpass"
+        placeholder="********"
+        class="require cpass inputs"
+      />
+    </div>
 
-        <div>
-            <button onclick="return false;" type="submit" id="sign-up" class="button">Créer</button>
-        </div>
-        <div>
-            <p class="question">Avez vous déjà un compte ? <a href="?p=sign-in" id="creer-un-compte">Connectez-vous.</a></p>
-        </div>
-    </form>
+    <div>
+      <button onclick="return false;" type="submit" id="sign-up" class="button">
+        Continuer
+      </button>
+    </div>
+    <div>
+      <p class="question">
+        Avez-vous déjà un compte ?
+        <a href="?p=sign-in" id="creer-un-compte">Connectez-vous.</a>
+      </p>
+    </div>
+  </form>
 </main>

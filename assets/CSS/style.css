@@ -1,132 +1,136 @@
-@import url('https://fonts.googleapis.com/css2?family=Muli:ital,wght@0,200;0,300;0,400;0,500;0,600;0,700;0,800;0,900;1,200;1,300;1,400;1,500;1,600;1,700;1,800;1,900&display=swap');
+@import url("https://fonts.googleapis.com/css2?family=Muli:ital,wght@0,200;0,300;0,400;0,500;0,600;0,700;0,800;0,900;1,200;1,300;1,400;1,500;1,600;1,700;1,800;1,900&display=swap");
 
 * {
-    box-sizing: border-box;
-    margin: 0;
-    padding: 0;
-  }
+  box-sizing: border-box;
+  margin: 0;
+  padding: 0;
+}
 
-
-  ::-webkit-scrollbar {
-	width: 9px;
-	height: 5px;
+::-webkit-scrollbar {
+  width: 9px;
+  height: 5px;
 }
 ::-webkit-scrollbar-button {
-	width: 0px;
-	height: 0px;
+  width: 0px;
+  height: 0px;
 }
 ::-webkit-scrollbar-thumb {
-	background: #FF8500;
-	border: 31px none #FF8500;
-	border-radius: 5px;
+  background: #ff8500;
+  border: 31px none #ff8500;
+  border-radius: 5px;
 }
 ::-webkit-scrollbar-thumb:hover {
-	background: #af600a;
+  background: #af600a;
 }
 ::-webkit-scrollbar-thumb:active {
-	background: #af600a;
+  background: #af600a;
 }
 ::-webkit-scrollbar-track {
-	background: #f0f0f0;
-	border: 1px solid #ffffff;
-	border-radius: 5px;
+  background: #f0f0f0;
+  border: 1px solid #ffffff;
+  border-radius: 5px;
 }
 ::-webkit-scrollbar-track:hover {
-	background: #f2f2f2;
+  background: #f2f2f2;
 }
 ::-webkit-scrollbar-track:active {
-	background: #f5f5f5;
+  background: #f5f5f5;
 }
 ::-webkit-scrollbar-corner {
-	background: transparent;
+  background: transparent;
 }
-
+::placeholder {
+  color: #949494;
+}
 
 body {
-    /*font-family: 'Raleway', sans-serif;*/
-    margin: 0;
-    padding: 0;
-    overflow-x: hidden;
-    font-size: 13.5px;
-    letter-spacing: 2px;
-    font-weight: 400;
-    font-family: 'Muli', sans-serif;
-    background-color: black;
+  /*font-family: 'Raleway', sans-serif;*/
+  margin: 0;
+  padding: 0;
+  overflow-x: hidden;
+  font-size: 13.5px;
+  letter-spacing: 2px;
+  font-weight: 400;
+  font-family: "Muli", sans-serif;
+  background-color: black;
 }
 
-a{
-    text-decoration: none;
+a {
+  text-decoration: none;
 }
 
 h1 {
-    color: #FF8500;
+  color: #ff8500;
 }
 
 .container {
-    width: 95%;
-    max-width: 1366px;
-    margin: auto;
+  width: 95%;
+  max-width: 1366px;
+  margin: auto;
 }
 
-.error input, .error textarea {
-    background: rgba(255,0,0,0.1);
-    border: 1px solid rgba(255,0,0,0.5);
-    color: white;
+.error input,
+.error textarea {
+  background: rgba(255, 0, 0, 0.1);
+  border: 1px solid rgba(255, 0, 0, 0.5);
+  color: white;
 }
 
 .error label {
-    color: red;
+  color: red;
 }
 
 .success {
-    background: rgb(7, 143, 7);
-    border: 1px solid rgba(7, 143, 7, 0.5);
-    color: white;
-    text-align: center;
-    width: 100%;
-    border-radius: 4px;
-    border-style: none;
-    padding: 12px;
-    outline: none;
-    font-size: 90%;
+  background: rgb(7, 143, 7);
+  border: 1px solid rgba(7, 143, 7, 0.5);
+  color: white;
+  text-align: center;
+  width: 100%;
+  border-radius: 4px;
+  border-style: none;
+  padding: 12px;
+  outline: none;
+  font-size: 90%;
 }
 
 .fail {
-    background: rgb(230, 38, 38);
-    border: 1px solid rgba(255,0,0,0.5);
-    color: white;
-    width: 100%;
-    border-radius: 4px;
-    border-style: none;
-    padding: 12px;
-    outline: none;
-    font-size: 90%;
+  background: rgb(230, 38, 38);
+  border: 1px solid rgba(255, 0, 0, 0.5);
+  color: white;
+  width: 100%;
+  border-radius: 4px;
+  border-style: none;
+  padding: 12px;
+  outline: none;
+  font-size: 90%;
 }
 
 .media {
-    float: left;
-    margin: 10px;
-    width: 275px;
-    /*height: 170px;*/
+  float: left;
+  margin: 10px;
+  width: 275px;
+  /*height: 170px;*/
 }
 
 .media.banner {
-    width: 505px;
+  width: 505px;
 }
 
-.media.banner img{
-    height: ;
+.media.banner img {
+  height: ;
 }
 
 .media img {
-    width: 100%;
+  width: 100%;
 }
 
-.media a, .media a:hover, .media a:active {
-    color: black;
-    text-decoration: none;
+.media a,
+.media a:hover,
+.media a:active {
+  color: black;
+  text-decoration: none;
 }
 
 section {
-    clear: both;
+  clear: both;
 }

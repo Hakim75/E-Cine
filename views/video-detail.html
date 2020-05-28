@@ -1,49 +1,64 @@
 <main id="main">
-    <section class="video-detail">
-        <article class="content-large-img">
-            <h1 class="title-large-img"><?=$m->vid_sTitre;?></h1>
+  <section class="video-detail">
+    <article class="content-large-img">
+      <h1 class="title-large-img"><?=$m->vid_sTitre;?></h1>
 
-            <p class="categoryMovie">
-                <?php foreach($listeCategoties AS $key=>$c){ ?>
-                <span><?=$c->cat_sLib;?></span>
-                <?php } ?>
-            </p>
-
-            <h3 class="real-large-img"><span class="txt-bold">Réalisé par :</span>
-                <?=$m->vid_sReal;?></h3>
-            <h3 class="real-large-img"><span class="txt-bold">Sortie le :</span>
-                <?=$cmn->affDateFrNum($m->vid_dDateSort);?></h3>
-            <h4 class="description-large-img"><?=$m->vid_sSyno;?></h4>
-            <div class="btns-large-img">
-                <?php if($m->vid_sType == "Film") { ?>
-                <a class="btnwatch marge2" href="?p=player&movie=<?=$m->vid_id;?>">Voir le film &nbsp;<i
-                        class="fas fa-play"></i></a>
-                <?php } ?>
-                <?php if(!$preferences) { ?>
-                <a class=" btnwatch btnwatch-secondary marge2 favoris" href="#" rel="<?=$m->vid_id;?>" id="add"
-                    data-change="0">Ajouter
-                    aux
-                    favoris <i class="far fa-heart"></i></a>
-                <?php } else { ?>
-                <a class="btnwatch btnwatch-secondary marge2 active favoris" href='#' rel="<?=$m->vid_id;?>" id="remove"
-                    data-change="1">Retirer
-                    des favoris <i class="fas fa-heart"></i></a>
-                <?php } ?>
-            </div>
-        </article>
-        <?php if($m->vid_sType == "Série") { ?>
-        <article class="content-large-img">
-            <select class="select">
-                <?php foreach($saison as $s) { ?>
-                <option value="<?=$s->san_id;?>">Saison <?=$s->san_iNumero;?></option>
-                <?php } ?>
-            </select>
-            <div class=" episodes">
-
-            </div>
-        </article>
+      <p class="categoryMovie">
+        <?php foreach($listeCategoties AS $key=>$c){ ?>
+        <span><?=$c->cat_sLib;?></span>
         <?php } ?>
-        <div class="bg-calc"></div>
-        <img class="bg-image" src="<?=$m->vid_sPoster;?>" />
-    </section>
+      </p>
+
+      <h3 class="real-large-img">
+        <span class="txt-bold">Réalisé par :</span>
+        <?=$m->vid_sReal;?>
+      </h3>
+      <h3 class="real-large-img">
+        <span class="txt-bold">Sortie le :</span>
+        <?=$cmn->affDateFrNum($m->vid_dDateSort);?>
+      </h3>
+      <h4 class="description-large-img"><?=$m->vid_sSyno;?></h4>
+      <div class="btns-large-img">
+        <?php if($m->vid_sType == "Film") { ?>
+        <a class="btnwatch marge2" href="?p=player&movie=<?=$m->vid_id;?>"
+          >Voir le film &nbsp;<i class="fas fa-play"></i
+        ></a>
+        <?php } ?>
+        <?php if(!$preferences) { ?>
+        <a
+          class=" btnwatch btnwatch-secondary marge2 favoris"
+          href="#"
+          rel="<?=$m->vid_id;?>"
+          id="add"
+          data-change="0"
+          >Ajouter aux favoris <i class="far fa-heart"></i
+        ></a>
+        <?php } else { ?>
+        <a
+          class="btnwatch btnwatch-secondary marge2 active favoris"
+          href="#"
+          rel="<?=$m->vid_id;?>"
+          id="remove"
+          data-change="1"
+          >Retirer des favoris <i class="fas fa-heart"></i
+        ></a>
+        <?php } ?>
+      </div>
+    </article>
+    <?php if($m->vid_sType == "Série") { ?>
+    <article class="content-large-img">
+      <select class="select">
+        <?php foreach($saison as $s) { ?>
+        <option value="<?=$s->san_id;?>"
+          >Saison
+          <?=$s->san_iNumero;?></option
+        >
+        <?php } ?>
+      </select>
+      <div class=" episodes"></div>
+    </article>
+    <?php } ?>
+    <div class="bg-calc"></div>
+    <img class="bg-image" src="<?=$m->vid_sPoster;?>" />
+  </section>
 </main>

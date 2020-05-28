@@ -1,31 +1,53 @@
-
-
 <main id="main">
-    <div class="marge"></div>
-    <h1 class="text-center">Modifier mon profil</h1>
-    <section class="rectangle-identifier">
-        <form id="form_profil" class="information-form">
-            <div class="returne_profil"></div>
-            <div>
-                <label class="label">Votre nom *:</label>
-                <input type="text" name="nom" class="require nom inputs" value="<?=$customer->usr_sNom;?>" />
-            </div>
-            <div>
-                <label class="label">Votre prénom:</label>
-                <input type="text" name="prenom" class="inputs" value="<?=$customer->usr_sPrenom;?>" />
-            </div>
-    
-            <div>
-                <label class="label">Votre pseudo *:</label>
-                <input type="text" name="pseudo" class="require pseudo inputs" value="<?=$customer->usr_sPseudo;?>" />
-            </div>
-    
-            <div>
-                <button onclick="return false;" type="submit" id="profil" class="button">Modifier</button>
-            </div>
-            <div>
-                <p class="question"> <a href="?p=account" id="creer-un-compte">Retour au compte</a></p>
-            </div>
-        </form>
-    </section>
+  <div class="marge"></div>
+  <h1 class="text-center">Modifier mon profil</h1>
+  <section class="rectangle-identifier">
+    <form id="form_profil" class="information-form">
+      <div class="returne_profil"></div>
+      <div>
+        <label class="label">Votre nom* :</label>
+        <input
+          type="text"
+          name="nom"
+          class="require nom inputs"
+          value="<?=$customer->usr_sNom;?>"
+        />
+      </div>
+      <div>
+        <label class="label">Votre prénom :</label>
+        <input
+          type="text"
+          name="prenom"
+          class="inputs"
+          value="<?=$customer->usr_sPrenom;?>"
+        />
+      </div>
+
+      <div>
+        <label class="label">Votre pseudo* :</label>
+        <input
+          type="text"
+          name="pseudo"
+          class="require pseudo inputs"
+          value="<?=$customer->usr_sPseudo;?>"
+        />
+      </div>
+
+      <div>
+        <button
+          onclick="return false;"
+          type="submit"
+          id="profil"
+          class="button"
+        >
+          Modifier
+        </button>
+      </div>
+      <div>
+        <p class="question">
+          <a href="?p=account" id="creer-un-compte">Retour au compte</a>
+        </p>
+      </div>
+    </form>
+  </section>
 </main>
